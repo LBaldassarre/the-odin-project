@@ -292,7 +292,7 @@ footer {
 
 .db_cell {
     width: 100%;
-    border: 0.1px solid #000;
+    border: 0.1px solid #dfdfdf;
     flex: 1;
 }
 
