@@ -65,28 +65,15 @@
 
                 </div>
 
-                <div class="control_pane__controls__pentype">
-
-                    <div class="pentype__selector">
-                        <button class="pentype__selector__button control_pane__controls__button">RGB</button>
-                        <button class="pentype__selector__button control_pane__controls__button">Single Color</button>
+                <div class="control_pane__controls__colors_selected">
+                    <div class="current_color colors_selected">
+                        <div class="current_color_title color_title">Color Selected</div>
+                        <div id="c_color" class="current_color_color bg_color"></div>
                     </div>
-
-                    <div class="pentype__dimmer">
-                        <div class="pentype__dimmer__title">
-                            <div class="dimmer__title">
-                                Dimmer
-                            </div>
-                            <div class="dimmer__percent">
-                                0%
-                            </div>
-                        </div>
-                        <div class="pentype__dimmer__buttons">
-                            <button class="pentype__dimmer__button control_pane__controls__button">+</button>
-                            <button class="pentype__dimmer__button control_pane__controls__button">-</button>
-                        </div>
+                    <div class="previous_color colors_selected">
+                        <div class="previous_color_title color_title">Previous Color</div>
+                        <div id="p_color" class="previous_color_color bg_color"></div>
                     </div>
-
                 </div>
 
                 <div class="control_pane__controls__palet">
@@ -132,7 +119,7 @@
 
                 <div class="control_pane__controls__board">
                     <button id="clearBoard" class="board__button control_pane__controls__button">Clear</button>
-                    <button id="newBoard" class="board__button control_pane__controls__button">New Board</button>
+                    <button id="newBoard" class="board__button control_pane__controls__button">Save</button>
                 </div>
 
             </div>
