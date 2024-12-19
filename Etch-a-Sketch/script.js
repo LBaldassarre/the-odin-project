@@ -5,7 +5,22 @@ function createDrawBoard (colNumber, rowNumber, drawBoard) {
         colHTML = '<div class="db_col">\n';
         var rowCounter = 0;
         while (rowCounter < rowNumber) {
-            var rowHTML = ' <div class="db_cell"></div>\n';
+            if (colCounter == 0 && rowCounter == 0 ) {
+                var rowHTML = ' <div class="db_cell db_cell_11"></div>\n';
+            } 
+            else if (colCounter == 0 && rowCounter == rowNumber - 1) {
+                var rowHTML = ' <div class="db_cell db_cell_1rn"></div>\n';
+            }
+            else if (colCounter == colNumber - 1 && rowCounter == 0 ) {
+                var rowHTML = ' <div class="db_cell db_cell_cn1"></div>\n';
+            } 
+            else if (colCounter == colNumber - 1 && rowCounter == rowNumber - 1) {
+                var rowHTML = ' <div class="db_cell db_cell_cnrn"></div>\n';
+            }
+            else {
+                var rowHTML = ' <div class="db_cell"></div>\n';
+            }
+            
             colHTML += rowHTML;
             rowCounter++;
         }
@@ -17,7 +32,23 @@ function createDrawBoard (colNumber, rowNumber, drawBoard) {
 }
 
 function clearBoard (cells) {
-    cells.forEach(cell => cell.className = 'db_cell');
+    cells.forEach(cell => {
+        if (cell.className.substring(0, 18) == "db_cell db_cell_11") {
+            cell.className = "db_cell db_cell_11";
+        }
+        else if (cell.className.substring(0, 19) == "db_cell db_cell_1rn") {
+            cell.className = "db_cell db_cell_1rn";
+        }
+        else if (cell.className.substring(0, 19) == "db_cell db_cell_cn1") {
+            cell.className = "db_cell db_cell_cn1";
+        }
+        else if (cell.className.substring(0, 20) == "db_cell db_cell_cnrn") {
+            cell.className = "db_cell db_cell_cnrn";
+        }
+        else {
+            cell.className = "db_cell";
+        }
+    });
 }
 
 function startDrawing (event) {
@@ -33,7 +64,21 @@ function draw (event) {
     if (!drawing) return;
 
     const cell = event.target;
-    cell.className = paintColor + " db_cell";
+    if (cell.className.substring(0, 18) == "db_cell db_cell_11") {
+        cell.className = "db_cell db_cell_11 " + paintColor;
+    }
+    else if (cell.className.substring(0, 19) == "db_cell db_cell_1rn") {
+        cell.className = "db_cell db_cell_1rn " + paintColor;
+    }
+    else if (cell.className.substring(0, 19) == "db_cell db_cell_cn1") {
+        cell.className = "db_cell db_cell_cn1 " + paintColor;
+    }
+    else if (cell.className.substring(0, 20) == "db_cell db_cell_cnrn") {
+        cell.className = "db_cell db_cell_cnrn " + paintColor;
+    }
+    else {
+        cell.className = "db_cell " + paintColor;
+    }
 }
 
 let drawing = false;

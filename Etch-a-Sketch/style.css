@@ -262,6 +262,22 @@ footer {
     flex: 1;
 }
 
+.db_cell_11 {
+    border-radius: 10px 0 0 0;
+}
+
+.db_cell_1rn {
+    border-radius: 0 0 0 10px;
+}
+
+.db_cell_cn1 {
+    border-radius: 0 10px 0 0;
+}
+
+.db_cell_cnrn {
+    border-radius: 0 0 10px 0;
+}
+
 .db_col {
     height: 100%;
     display: flex;
