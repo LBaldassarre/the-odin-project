@@ -1,0 +1,328 @@
+/* ----------BASE STYLE---------- */
+
+:root {
+    /* --primary-color:  #3f5f39;
+    --secondary-color: #fff;
+    --accent-color: #cbe3ca;
+    --text-color: #fff;
+    --secondary-text-color: #000; */
+    --primary-color:  #1b2d48;
+    --secondary-color: #2c456b;
+    --accent-color: #3c649f;
+    --text-color: #fff;
+    --secondary-text-color: #000;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    background: var(--primary-color);
+    background: linear-gradient(151deg, var(--primary-color) 0%, var(--secondary-color) 48%, var(--primary-color) 100%);
+    color: var(--secondary-color);
+}
+
+/* ----------BASE STYLE---------- */
+
+/* ----------FIRST LAYER---------- */
+
+header {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 5rem;
+}
+
+main {
+    flex: 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ----------FIRST LAYER---------- */
+
+/* ----------MAIN CONTENT---------- */
+
+.control_pane {
+    flex: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+}
+
+.draw_pane {
+    flex: 8;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+/* ----------MAIN CONTENT---------- */
+
+/* ----------CONTROL PANE---------- */
+
+.control_pane__controls {
+    flex: 1;
+    max-height: 80%;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 15px 1px var(--accent-color);
+    background-color: var(--text-color);
+}
+
+.control_pane__controls__palet {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.control_pane__controls__palet__title {
+    flex: 1;
+    color: var(--secondary-text-color);
+}
+
+.control_pane__controls__pentype {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pentype__selector {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pentype__dimmer {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pentype__dimmer__title {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dimmer__title {
+    flex: 1;
+    color: var(--secondary-text-color);
+}
+
+.dimmer__percent {
+    flex: .5;
+    margin-right: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-text-color);
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 15px 1px var(--accent-color);
+    background-color: var(--text-color);
+}
+
+.pentype__dimmer__buttons {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.control_pane__controls__board {
+    flex: .5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.control_pane__controls__button {
+    width: 40%;
+    height: 80%;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 15px 1px var(--accent-color);
+    background-color: var(--text-color);
+    transform: scale(1);
+    transition: transform .3s;
+}
+
+.control_pane__controls__button:hover {
+    transform: scale(1.2);
+}
+
+.control_pane__controls__palet__colors {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.color {
+    width: 2em;
+    height: 2em;
+    background-color: var(--text-color);
+    border: 0.1px solid #000;
+}
+
+.color11 {
+    background-color: white;
+}
+.color12 {
+    background-color: black;
+}
+.color13 {
+    background-color: gray;
+}
+.color21 {
+    background-color: red;
+}
+.color22 {
+    background-color: darkred;
+}
+.color23 {
+    background-color: lightcoral;
+}
+.color31 {
+    background-color: blue;
+}
+.color32 {
+    background-color: darkblue;
+}
+.color33 {
+    background-color: lightblue;
+}
+.color41 {
+    background-color: green;
+}
+.color42 {
+    background-color: darkgreen;
+}
+.color43 {
+    background-color: lightgreen;
+}
+.color51 {
+    background-color: yellow;
+}
+.color52 {
+    background-color: orange;
+}
+.color53 {
+    background-color: lightgoldenrodyellow;
+}
+.color61 {
+    background-color: palevioletred;
+}
+.color62 {
+    background-color: purple;
+}
+.color63 {
+    background-color: pink;
+}
+
+/* ----------CONTROL PANE---------- */
+
+
+/* ----------DRAW BOARD---------- */
+
+.draw_pane {
+    padding: 1em;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+.draw_pane__board {
+    flex: 1;
+    width: 960px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 15px 1px var(--accent-color);
+    background-color: var(--text-color);
+}
+
+.draw_pane__board__cell {
+    flex: 1;
+    display: flex;
+    background-color: var(--text-color);
+    justify-content: center;
+    align-items: center;
+}
+
+.db_row {
+    width: 100%;
+    border: 0.1px solid #000;
+    flex: 1;
+}
+
+.db_col {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+/* ----------DRAW BOARD---------- */
+
+
+/* ----------HEADER---------- */
+
+.header__logo {
+    color: var(--text-color);
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5em;
+}
+
+/* ----------HEADER---------- */
+
+
+/* ----------FOOTER---------- */
+
+.footer_text {
+    color: var(--accent-color);
+    font-size: 0.7em;
+}
+
+/* ----------FOOTER---------- */

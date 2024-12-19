@@ -1,0 +1,27 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    background-color: antiquewhite;
+}
+
+a {
+    color: black;
+}
+
+img {
+    height: auto;
+    width: 500px;
+}
+
+.ingredients,
+.how-to {
+    text-align: left;
+}
+
+.ingredients {
+    color: crimson;
+}
+
+.how-to {
+    color: darkblue;
+}

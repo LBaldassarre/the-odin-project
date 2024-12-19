@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style..css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Rubik&display=swap" rel="stylesheet">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+
+    <section class="header">
+
+        <h1>Rock, Paper, Scissors</h1>
+
+    </section>
+
+    <section class="main">
+
+        <section class="left_pane">
+
+            <section class="round">
+
+                <div class="round__choice round__npc">
+
+                    <div class="round__choice__icon">
+                        <img src="assets/robot.png" alt="">
+                    </div>
+
+                    <div class="round__choice__rps rps_npc">
+
+                        <div class="round__choice__rps-option option_npc" data-key="rock">
+                            <img class="rock rock__npc" src="assets/rock.png" alt="">
+                        </div>
+
+                        <div class="round__choice__rps-option option_npc" data-key="paper">
+                            <img class="paper __npc" src="assets/paper.png" alt="">
+                        </div>
+
+                        <div class="round__choice__rps-option option_npc" data-key="scissors">
+                            <img class="scissors scissors__npc" src="assets/scissors.png" alt="">
+                        </div>
+
+                    </div>
+
+                    <div class="round__choice__points points_npc">
+                        0
+                    </div>
+                
+                </div>
+
+                <div class="round__result">
+
+                        <div class="round__result-text">
+                            Game Result
+                        </div>
+
+                        <div class="round__result-next">
+                            <img src="assets/continuous.png" alt="">
+                        </div>
+
+                </div>
+
+                <div class="round__choice round__pc">
+
+                    <div class="round__choice__icon">
+                        <img src="assets/user.png" alt="">
+                    </div>
+
+                    <div class="round__choice__rps rps_pc">
+
+                        <div class="round__choice__rps-option option_pc option_pc_hover" data-key="rock">
+                            <img class="rock rock__pc" src="assets/rock.png" alt="">
+                        </div>
+
+                        <div class="round__choice__rps-option option_pc option_pc_hover" data-key="paper">
+                            <img class="paper paper__pc" src="assets/paper.png" alt="">
+                        </div>
+
+                        <div class="round__choice__rps-option option_pc option_pc_hover" data-key="scissors">
+                            <img class="scissors scissors__pc" src="assets/scissors.png" alt="">
+                        </div>
+
+                    </div>
+
+                    <div class="round__choice__points points_pc">
+                        0
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+        
+        <section class="right_pane">
+
+            <section class="rules">
+
+                <div class="rules__header">
+                    Rules    
+                </div>
+
+                <div class="rules__text">
+                    The first to get to five points win <br> <br>
+                    If you don't know the rules of Rock, Paper, Scissors fell free to google them.
+                </div>
+
+            </section>
+            
+
+            <section class="game_log">
+
+                <div class="game_log__header">
+                    Game Log    
+                </div>
+
+                <div class="game_log__text">
+                    Good Luck and Have Fun! <br>
+                </div>
+
+            </section>
+
+        </section>
+    
+    </section>
+
+    <div class="round_block"></div>
+    <div class="game_block">
+        <div class="game_end_message_spacer"></div>
+        <div class="game_end_message round__choice">
+            <div class="message"></div>
+            <div onClick="window.location.reload()"; class="refresh_button round__result-next">
+                <img src="assets/continuous.png" alt="">
+            </div>
+        </div>
+        <div class="game_end_message_spacer"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
