@@ -194,7 +194,7 @@ footer {
     align-items: center;
 }
 
-.color {
+.p_color, .bg_color {
     width: 2em;
     height: 2em;
     background-color: var(--text-color);
@@ -279,6 +279,7 @@ footer {
     border: 2px solid var(--primary-color);
     box-shadow: 0 0 15px 1px var(--accent-color);
     background-color: var(--text-color);
+    gap: 1px;
 }
 
 .draw_pane__board__cell {
@@ -289,7 +290,7 @@ footer {
     align-items: center;
 }
 
-.db_row {
+.db_cell {
     width: 100%;
     border: 0.1px solid #000;
     flex: 1;
