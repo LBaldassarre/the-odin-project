@@ -4,15 +4,6 @@ function decodeHtml(html) {
     return txt.value;
 }
 
-const operators = [
-        "^", 
-        decodeHtml("&#247;"), 
-        decodeHtml("&#215;"),
-        decodeHtml("&#8722;"),
-        decodeHtml("&#43;"),
-        decodeHtml("&#61;")
-    ]
-
 function add (a, b) {
     return a + b;
 }
@@ -35,24 +26,29 @@ function power (a, b) {
 
 
 function evaluate (str) {
-    switch (true) {
-        case str.includes("^"):
-            console.log(str, "^");
+    const operator = operatorsSelected[0];
+    const nextOperator = operatorsSelected[1] === decodeHtml("&#61;") ? "" : operatorsSelected[1];
+    const operatorIndex = str.indexOf(operator);
+    const firstNum = parseFloat(str.substring(0, operatorIndex));
+    const secondNum = parseFloat(str.substring(operatorIndex + 1));
+
+    operatorsSelected = [];
+    
+    switch (operator) {
+        case "^":
+            screen.innerHTML = String(power(firstNum, secondNum)) + nextOperator;
             break;
-        case str.includes(decodeHtml("&#247;")):
-            console.log(str, decodeHtml("&#247;"));
+        case decodeHtml("&#247;"):
+            screen.innerHTML = String(divide(firstNum, secondNum)) + nextOperator;
             break;
-        case str.includes(decodeHtml("&#215;")):
-            console.log(str, decodeHtml("&#215;"));
+        case decodeHtml("&#215;"):
+            screen.innerHTML = String(multiply(firstNum, secondNum)) + nextOperator;
             break;
-        case str.includes(decodeHtml("&#8722;")):
-            console.log(str, decodeHtml("&#8722;"));
+        case decodeHtml("&#8722;"):
+            screen.innerHTML = String(subtract(firstNum, secondNum)) + nextOperator;
             break;
-        case str.includes(decodeHtml("&#43;")):
-            console.log(str, decodeHtml("&#43;"));
-            break;
-        case str.includes(decodeHtml("&#61;")):
-            console.log(str, decodeHtml("&#61;"));
+        case decodeHtml("&#43;"):
+            screen.innerHTML = String(add(firstNum, secondNum)) + nextOperator;
             break;
     }
 }
@@ -98,11 +94,23 @@ function canBeEvaluated (str) {
 
 function handleButton (event) {
     const value = this.attributes.data.value;
-    const calculate = canBeEvaluated(screen.innerHTML);
-    inputToScreen(value);
+    if (operators.includes(value)) operatorsSelected.push(value);
+    const calculate = canBeEvaluated(screen.innerHTML) && operators.includes(value);
 
-    if(calculate) evaluate(screen.innerHTML);
+    calculate ? evaluate(screen.innerHTML, operatorsSelected) : inputToScreen(value);
 }
+
+
+const operators = [
+    "^", 
+    decodeHtml("&#247;"), 
+    decodeHtml("&#215;"),
+    decodeHtml("&#8722;"),
+    decodeHtml("&#43;"),
+    decodeHtml("&#61;")
+];
+
+let operatorsSelected = [];
 
 var screen = document.querySelector('.screen');
 var buttons = document.querySelectorAll('button');
