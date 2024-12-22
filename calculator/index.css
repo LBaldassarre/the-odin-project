@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-weight: bold;
+    font-family: cursive;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2rem 0 0 2rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid black 0.3rem;
+    border-radius: 5px;
+}
+
+.screen {
+    width: 30vw;
+    height: 10vh;
+    background-color: rgb(221, 218, 218);
+    border-bottom: solid rgb(122, 122, 122) 1px;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    font-size: 3rem;
+    padding: 1rem;
+}
+
+
+.keyboard {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%; 
+    gap: 0.2rem;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    height: 4rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.3rem;
+}
+
+.cero {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.content {
+    background-color: #f89f3a;
+}
+
+.function {
+    background-color: #59b3f0;
+    font-size: 1.7rem;
+}
+
+.number {
+    background-color: #44f789;
+}
+
+button:active {
+    transform: translateX(1px) translateY(1px);
+    filter: brightness(80%);
+}
