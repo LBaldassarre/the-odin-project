@@ -31,39 +31,46 @@ function evaluate (str) {
     const operatorIndex = str.indexOf(operator);
     const firstNum = parseFloat(str.substring(0, operatorIndex));
     const secondNum = parseFloat(str.substring(operatorIndex + 1));
-
-    operatorsSelected = [];
+    let result = 0;
     
     switch (operator) {
         case "^":
-            screen.innerHTML = String(power(firstNum, secondNum)) + nextOperator;
+            result = power(firstNum, secondNum);
             break;
         case decodeHtml("&#247;"):
-            screen.innerHTML = String(divide(firstNum, secondNum)) + nextOperator;
+            result = divide(firstNum, secondNum);
             break;
         case decodeHtml("&#215;"):
-            screen.innerHTML = String(multiply(firstNum, secondNum)) + nextOperator;
+            result = multiply(firstNum, secondNum);
             break;
         case decodeHtml("&#8722;"):
-            screen.innerHTML = String(subtract(firstNum, secondNum)) + nextOperator;
+            result = subtract(firstNum, secondNum);
             break;
         case decodeHtml("&#43;"):
-            screen.innerHTML = String(add(firstNum, secondNum)) + nextOperator;
+            result = add(firstNum, secondNum);
             break;
     }
+
+    nextOperator === "" 
+        ? operatorsSelected = []
+        : operatorsSelected = [operatorsSelected[1]];
+    screen.innerHTML = String(Number.isInteger(result) ? result : parseFloat(result).toFixed(1)) + nextOperator;
+
+    
 }
 
-function clearAndBackspace (value) {
-    switch (value) {
-        case "backspace":
-            screen.innerHTML = screen.innerHTML.slice(0, -1);
-            break;
-        case "clear":
-            screen.innerHTML = "0";
-            break;
-        default:
-            screen.innerHTML
+function dotCap (str) {
+    if (operatorsSelected.length === 0) {
+        if (str.includes(".")) return true;
+    } else {
+        const operator = operatorsSelected[0];
+        const operatorIndex = str.indexOf(operator);
+        const secondNum = operatorIndex < str.length 
+                            ? str.substring(operatorIndex + 1)
+                            : "";
+        if (secondNum.includes(".") ) return true;
     }
+    
 }
 
 function displayInScreen (value) {
@@ -75,18 +82,13 @@ function displayInScreen (value) {
             screen.innerHTML = "0";
             break;
         case ".":
-            !screen.innerHTML.includes(".") ? screen.innerHTML += value : screen.innerHTML;
+            !dotCap(screen.innerHTML) ? screen.innerHTML += value : screen.innerHTML;
             break;
         default:
             screen.innerHTML === "0" ? screen.innerHTML = value : screen.innerHTML += value;
     }
 }
 
-function inputToScreen (value) {
-    screen.innerHTML.length < 10 
-        ? displayInScreen(value) 
-        : clearAndBackspace(value);
-}
 
 function canBeEvaluated (str) {
     return operators.some(item => str.includes(item));
@@ -96,8 +98,11 @@ function handleButton (event) {
     const value = this.attributes.data.value;
     if (operators.includes(value)) operatorsSelected.push(value);
     const calculate = canBeEvaluated(screen.innerHTML) && operators.includes(value);
-
-    calculate ? evaluate(screen.innerHTML, operatorsSelected) : inputToScreen(value);
+    
+    calculate 
+        ? evaluate(screen.innerHTML, operatorsSelected) 
+        : displayInScreen(value);
+    
 }
 
 

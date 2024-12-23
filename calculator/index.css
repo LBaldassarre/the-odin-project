@@ -33,7 +33,6 @@ main {
 
 .screen {
     min-width: 30vw;
-    max-width: 50vw;
     min-height: 10vh;
     background-color: rgb(221, 218, 218);
     border-bottom: solid rgb(122, 122, 122) 1px;
