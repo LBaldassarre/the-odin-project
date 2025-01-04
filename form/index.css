@@ -1,3 +1,71 @@
-h1 {
-    color: blueviolet;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "logoFont";
+    src: url(./font/Norse-Bold.otf);
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.sidebar {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: space-between;
+    padding-top: 20vh;
+    padding-bottom: 2vh;
+    background-image: url(./img/halie-west-25xggax4bSA-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sidebar > p {
+    color: #fff;
+}
+
+.sidebar a {
+    text-decoration: underline;
+}
+
+.log {
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.log_img {
+    display: inline-block;
+    max-width: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log_img > img {
+    height: 80%;
+}
+
+.log_text {
+    font-family: "logoFont";
+    font-size: 4rem;
 }
