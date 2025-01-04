@@ -55,11 +55,11 @@
                 <div class="password">
                     <div class="label_input">
                         <label for="password">PASSWORD</label>
-                        <input type="text" id="password">
+                        <input type="password" id="password" required minlength="8" maxlength="20" pattern="^(?:(?=.*?\p{N})(?=.*?[\p{S}\p{P} ])(?=.*?\p{Lu})(?=.*?\p{Ll}))[^\p{C}]{8,16}$">
                     </div>
                     <div class="label_input">
                         <label for="confirm_password">CONFIRM PASSWORD</label>
-                        <input type="text" id="confirm_password">
+                        <input type="password" id="confirm_password" required minlength="8" maxlength="20" pattern="^(?:(?=.*?\p{N})(?=.*?[\p{S}\p{P} ])(?=.*?\p{Lu})(?=.*?\p{Ll}))[^\p{C}]{8,16}$">
                     </div>
                 </div>
             </section>
