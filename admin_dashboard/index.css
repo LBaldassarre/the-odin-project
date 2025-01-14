@@ -82,6 +82,9 @@ main {
 .announcements {
     grid-column: 2;
     grid-row: 1;
+    display: grid;
+    grid-template-rows: 1.5rem 1fr;
+    gap: 10px;
 }
 
 .trending {
@@ -135,4 +138,33 @@ main div[class$="title"] {
 .card .content .subject {
     font-weight: 450;
     font-size: 1.1rem;
+}
+
+.a_notifications {
+    background-color: var(--white);
+    border-radius: 10px;
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 10px;
+    padding: 30px;
+}
+
+.announcement {
+    display: grid;
+    grid-template-rows: 1rem 1fr;
+    gap: 5px;
+    border-bottom: 1px solid var(--shadow);
+}
+
+.announcement:last-child {
+    border-bottom: none;
+}
+
+.a_subject {
+    font-size: 1rem;
+    font-weight: 450;
+}
+
+.a_description {
+    font-size: 0.75rem;
 }
