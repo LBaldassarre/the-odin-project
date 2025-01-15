@@ -168,3 +168,31 @@ main div[class$="title"] {
 .a_description {
     font-size: 0.75rem;
 }
+
+.trending{
+    display: grid;
+    grid-template-rows: 1.5rem 1fr;
+    gap: 10px;
+}
+
+.trending .icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    background-color: var(--yellow);
+}
+
+.t_accounts {
+    background-color: var(--white);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    padding: 30px;
+    align-items: center;
+}
+
+.account {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+}
