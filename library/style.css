@@ -1,3 +1,118 @@
-h1 {
-    background-color: blue;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "Roboto", serif;
+}
+
+:root {
+    --blue: #187fd2;
+    --white: #ffffff;
+    --gray: #e1e6ef;
+    --shadow: #cbced8; 
+    --yellow: #f2bf31;
+}
+
+body {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-image-source: linear-gradient(
+        90deg, 
+        white 0%, 
+        var(--shadow) 5%, 
+        var(--shadow) 95%, 
+        white 100%);
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.user .icon {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    background-color: var(--yellow);
+}
+
+.user .name {
+    font-size: 1.2rem;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.filter {
+    min-width: 150px;
+    border: 1px solid var(--shadow);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.filter_header{
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.filter_header span {
+    transform: rotate(-90deg);
+    margin-top: -5px;
+}
+
+.filter_header.content_open {
+    padding: 0 5px 10px 0;
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-image-source: linear-gradient(
+            90deg, 
+            white 0%, 
+            var(--shadow) 5%, 
+            var(--shadow) 95%, 
+            white 100%);
+}
+
+.filter_content {
+    display: none;
+}
+
+.filter_content.open { 
+    font-weight: 300;   
+    display: block;
+    height: 150px;
+    padding: 10px 0;
 }
