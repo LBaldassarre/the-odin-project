@@ -1,3 +1,4 @@
+const filters = document.querySelectorAll('.filter');
 const filter_dropdowns = document.querySelectorAll('span');
 const filter_headers = document.querySelectorAll('.filter_header');
 const filter_contents = document.querySelectorAll('.filter_content');
@@ -12,16 +13,18 @@ function toggleFilterContent (filter) {
 
 function handleDropdown (e) {
     const id = e.target.attributes.id.value
-    console.log(id);
+    filters.forEach(filter => {
+        if (filter.attributes.id.value === id) {
+            toggleFilterContent(filter);
+        }
+    })
     filter_headers.forEach(filter_header => {
         if (filter_header.attributes.id.value === id) {
-            console.log(filter_header);
             toggleFilterContent(filter_header);
         }
     })
     filter_contents.forEach(filter_content => {
         if (filter_content.attributes.id.value === id) {
-            console.log(filter_content);
             toggleFilterContent(filter_content);
         }
     })
