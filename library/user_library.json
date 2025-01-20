@@ -1,0 +1,204 @@
+{
+  "books": [
+    {
+      "title": "1984",
+      "author": "George Orwell",
+      "summary": "A dystopian novel about a totalitarian regime that uses surveillance and mind control to maintain power.",
+      "category": "Dystopian",
+      "number_of_pages": 328,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/1539353-L.jpg"
+    },
+    {
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "summary": "A young girl witnesses her father defending an innocent black man in the racially segregated South.",
+      "category": "Fiction",
+      "number_of_pages": 281,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/8227261-L.jpg"
+    },
+    {
+      "title": "Moby-Dick",
+      "author": "Herman Melville",
+      "summary": "The obsessive quest of Captain Ahab to kill the giant white whale, Moby Dick, becomes a metaphor for human obsession.",
+      "category": "Classic",
+      "number_of_pages": 585,
+      "owned": false,
+      "read": false,
+      "cover_image": "https://covers.openlibrary.org/b/id/11144646-L.jpg"
+    },
+    {
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "summary": "A tale of decadence and disillusionment during the Jazz Age, revolving around Jay Gatsby's unrequited love.",
+      "category": "Fiction",
+      "number_of_pages": 180,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/10610706-L.jpg"
+    },
+    {
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "summary": "The romantic entanglements and societal challenges of Elizabeth Bennet and Mr. Darcy in Regency-era England.",
+      "category": "Romance",
+      "number_of_pages": 279,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/7440547-L.jpg"
+    },
+    {
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "summary": "The story of Holden Caulfield, a disenchanted teen who struggles with societal expectations and personal loss.",
+      "category": "Fiction",
+      "number_of_pages": 277,
+      "owned": false,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/10521853-L.jpg"
+    },
+    {
+      "title": "Brave New World",
+      "author": "Aldous Huxley",
+      "summary": "A dystopian future where humans are engineered for specific roles, and individuality is suppressed for societal harmony.",
+      "category": "Dystopian",
+      "number_of_pages": 268,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/10428750-L.jpg"
+    },
+    {
+      "title": "Frankenstein",
+      "author": "Mary Shelley",
+      "summary": "A scientist creates a monster, only to be horrified by the consequences of his creation and its destructive power.",
+      "category": "Horror",
+      "number_of_pages": 280,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/8570781-L.jpg"
+    },
+    {
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "summary": "Bilbo Baggins, a reluctant hobbit, embarks on a dangerous adventure to reclaim treasure guarded by a dragon.",
+      "category": "Fantasy",
+      "number_of_pages": 310,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/10571164-L.jpg"
+    },
+    {
+      "title": "War and Peace",
+      "author": "Leo Tolstoy",
+      "summary": "A historical epic exploring Russian society during the Napoleonic wars, focusing on love, duty, and loss.",
+      "category": "Historical Fiction",
+      "number_of_pages": 1225,
+      "owned": false,
+      "read": false,
+      "cover_image": "https://covers.openlibrary.org/b/id/10879724-L.jpg"
+    },
+    {
+      "title": "The Odyssey",
+      "author": "Homer",
+      "summary": "The epic tale of Odysseus' perilous journey home after the Trojan War, encountering mythical creatures and gods.",
+      "category": "Mythology",
+      "number_of_pages": 400,
+      "owned": true,
+      "read": false,
+      "cover_image": "https://covers.openlibrary.org/b/id/10251631-L.jpg"
+    },
+    {
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "summary": "A look at the history of humanity, exploring how Homo sapiens came to dominate the planet.",
+      "category": "Non-fiction",
+      "number_of_pages": 443,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/10223240-L.jpg"
+    },
+    {
+      "title": "The Picture of Dorian Gray",
+      "author": "Oscar Wilde",
+      "summary": "Dorian Gray, a young man obsessed with beauty, keeps his portrait aging while his physical self remains youthful.",
+      "category": "Gothic Fiction",
+      "number_of_pages": 254,
+      "owned": false,
+      "read": false,
+      "cover_image": "https://covers.openlibrary.org/b/id/10677350-L.jpg"
+    },
+    {
+      "title": "The Chronicles of Narnia",
+      "author": "C.S. Lewis",
+      "summary": "A group of children are transported to the magical land of Narnia, where they fight to defeat an evil queen.",
+      "category": "Fantasy",
+      "number_of_pages": 778,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/10571191-L.jpg"
+    },
+    {
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "summary": "A young shepherd named Santiago journeys across the desert to find a treasure, discovering his personal legend.",
+      "category": "Philosophical Fiction",
+      "number_of_pages": 208,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/8107272-L.jpg"
+    },
+    {
+      "title": "The Catch-22",
+      "author": "Joseph Heller",
+      "summary": "In World War II, Captain Yossarian grapples with absurd bureaucratic rules that prevent him from escaping the war.",
+      "category": "Satire",
+      "number_of_pages": 453,
+      "owned": false,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/10175355-L.jpg"
+    },
+    {
+      "title": "The Road",
+      "author": "Cormac McCarthy",
+      "summary": "A father and son navigate a post-apocalyptic world, trying to survive and hold on to their humanity.",
+      "category": "Post-apocalyptic",
+      "number_of_pages": 287,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/10170924-L.jpg"
+    },
+    {
+      "title": "The Silent Patient",
+      "author": "Alex Michaelides",
+      "summary": "A woman murders her husband and then refuses to speak, leading a psychotherapist to uncover the truth behind her silence.",
+      "category": "Psychological Thriller",
+      "number_of_pages": 325,
+      "owned": true,
+      "read": false,
+      "cover_image": "https://covers.openlibrary.org/b/id/11212699-L.jpg"
+    },
+    {
+      "title": "Educated",
+      "author": "Tara Westover",
+      "summary": "A memoir of a woman who grows up in a strict, survivalist family and eventually escapes to pursue education.",
+      "category": "Memoir",
+      "number_of_pages": 334,
+      "owned": true,
+      "read": true,
+      "cover_image": "https://covers.openlibrary.org/b/id/10250197-L.jpg"
+    },
+    {
+      "title": "The Girl on the Train",
+      "author": "Paula Hawkins",
+      "summary": "A woman is drawn into the investigation of a missing woman after she witnesses something unusual from her train.",
+      "category": "Thriller",
+      "number_of_pages": 395,
+      "owned": false,
+      "read": false,
+      "cover_image": "https://covers.openlibrary.org/b/id/8495371-L.jpg"
+    }
+  ]
+}
