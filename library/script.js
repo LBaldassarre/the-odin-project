@@ -35,6 +35,8 @@ async function loadBooks() {
 
 function populateMain(book) {
     const index = library.indexOf(book);
+    const ownedColor = book.owned ? 'green' : 'black';
+    const readColor = book.read ? 'green' : 'black';
     const bookHTML = 
         `
         <div class="book">
@@ -43,10 +45,10 @@ function populateMain(book) {
                     <img src="${book.cover_image}" alt="cover">
                 </div>
                 <div class="owned">
-                    <span class="material-symbols-outlined">book_4_spark</span>
+                    <span style="color:${ownedColor};" class="material-symbols-outlined">book_4_spark</span>
                 </div>
                 <div class="read">
-                    <span class="material-symbols-outlined">menu_book</span>
+                    <span style="color:${readColor};" class="material-symbols-outlined">menu_book</span>
                 </div>
                 <div class="info">
                     <span id="${index}" class="material-symbols-outlined info_button">info</span>
