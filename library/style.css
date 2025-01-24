@@ -75,7 +75,7 @@ nav {
 
 .filter {
     overflow: visible;
-    min-width: 150px;
+    min-width: 200px;
     height: 50px;
     background-color: var(--white);
     border: 1px solid var(--shadow);
@@ -97,6 +97,7 @@ nav {
 .filter_dropdown {
     display: grid;
     place-items: center;
+    cursor: pointer;
 }
 
 .filter_header span {
@@ -138,11 +139,49 @@ nav {
 }
 
 .filter_content.open { 
-    font-weight: 300;   
-    display: block;
+    font-weight: 300;
+    font-size: 0.9rem;   
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     height: 150px;
-    padding: 10px 0;
+    padding: 5px 0;
+    overflow: scroll;
     transition: 0.5s;
+}
+
+.filter_content_sort li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.filter_content_sort button {
+    background-color: var(--white);
+    padding: 2px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.filter_content_values {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 0 10px;
+}
+
+.filter_content_values li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: capitalize;
+    padding-right: 5px;
+}
+
+.filter_content_values input {
+    cursor: pointer;
 }
 
 main {
@@ -248,4 +287,5 @@ main {
 .info,
 .edit {
     place-self: center;
+    cursor: pointer;
 }

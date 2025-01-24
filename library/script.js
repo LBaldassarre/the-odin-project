@@ -76,9 +76,49 @@ function toggleContent (object) {
     if (object.className.includes('open')) {
         object.classList.remove('open');
     } else {
-        console.log(object.classList);
         object.classList.add('open');
     }
+}
+
+function addFilterValues () {
+    filter_contents_values.forEach(filter => {
+        switch(filter.attributes.id.value){
+            case '1':
+                let ownedHTML = '<ul>'
+                owned.forEach(value => {
+                    ownedHTML += `\n <li> <span>${value}</span> <input type="checkbox" id="1"> </input> </li>`
+                });
+                ownedHTML += '\n </ul>'
+                filter.innerHTML = ownedHTML;
+                break;
+            case '2':
+                let readHTML = '<ul>'
+                read.forEach(value => {
+                    readHTML += `\n <li> <span>${value}</span> <input type="checkbox" id="1">  </input> </li>`
+                });
+                readHTML += '\n </ul>'
+                filter.innerHTML = readHTML;
+                break;
+            case '3':
+                let categoriesHTML = '<ul>'
+                categories.forEach(value => {
+                    categoriesHTML += `\n <li> <span>${value}</span> <input type="checkbox" id="1"> </input> </li>`
+                });
+                categoriesHTML += '\n </ul>'
+                filter.innerHTML = categoriesHTML;
+                break;
+            case '4':
+                let authorsHTML = '<ul>'
+                authors.forEach(value => {
+                    authorsHTML += `\n <li> <span>${value}</span> <input type="checkbox" id="1"> </input> </li>`
+                });
+                authorsHTML += '\n </ul>'
+                filter.innerHTML = authorsHTML;
+                break;
+            default:
+                console.log('Upps, wrong id given');    
+        }
+    })
 }
 
 function handleDropdown (e) {
@@ -95,14 +135,13 @@ function handleDropdown (e) {
     })
     filter_contents.forEach(filter_content => {
         if (filter_content.attributes.id.value === id) {
-            toggleContent(filter_content);
+            toggleContent(filter_content);   
         }
     })
 }
 
 function handleInfoPane (e) {
     const id = e.target.attributes.id.value
-    console.log(id);
     info_panes.forEach(info_pane => {
         if (info_pane.attributes.id.value === id) {
             toggleContent(info_pane);
@@ -114,20 +153,50 @@ function handleInfoPane (e) {
     })
 }
 
-async function loadContent() {
-    await loadBooks();
-    await library.forEach(book => populateMain(book));
+function getFilters(book) {
+    owned.push(book.owned);
+    read.push(book.read);
+    authors.push(book.author);
+    categories.push(book.category);
 }
 
+async function generalPopulate() {
+    library.forEach(book => {
+        getFilters(book);
+        populateMain(book);
+    });
+}
 
+async function uniqueFilters() {
+    owned = [...new Set(owned)];
+    read = [...new Set(read)];
+    authors = [...new Set(authors)];
+    categories = [...new Set(categories)];
+}
+
+async function loadContent() {
+    await loadBooks();
+    await generalPopulate();
+    await uniqueFilters()
+        .then(addFilterValues());
+}
+
+let owned = [];
+let read = [];
+let authors = [];
+let categories = [];
 let library = [];
-loadContent().then(console.log('ready'));
+loadContent()
+    .then(console.log('ready'))
+    
 
 const filters = document.querySelectorAll('.filter');
 const filter_dropdowns = document.querySelectorAll('.dropdown');
 const filter_headers = document.querySelectorAll('.filter_header');
 const filter_contents = document.querySelectorAll('.filter_content');
+const filter_contents_values = document.querySelectorAll('.filter_content_values');
 const main = document.querySelector('main');
+
 let info_panes;
 let info_buttons;
 document.addEventListener('DOMNodeInserted', () => {
