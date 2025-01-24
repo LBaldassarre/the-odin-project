@@ -191,7 +191,7 @@ async function filterLibrary() {
         let value = item.children[0].innerHTML;
         if(checked) {filterArray[id-1].push(value)};
     })
-    
+
     if(filterArray[0].length > 0) {
     library = library.filter(book => filterArray[0].includes(book.owned.toString()))
     }
@@ -206,7 +206,18 @@ async function filterLibrary() {
     }
     
     main.innerHTML = '';
-    await generalPopulate();
+    await generalPopulate()
+        .then(() => {
+            filter_items = document.querySelectorAll('.filter_item');
+            filter_items.forEach(item => {
+                item.addEventListener('click', () => {
+                    filterLibrary();
+                })
+            })
+            info_panes = document.querySelectorAll('.info_pane');
+            info_buttons = document.querySelectorAll('.info_button');
+            info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+        });
 }
 
 async function mainFunc () {
@@ -227,6 +238,7 @@ async function mainFunc () {
 
 const filters = document.querySelectorAll('.filter');
 const filter_dropdowns = document.querySelectorAll('.dropdown');
+filter_dropdowns.forEach( filter_dropdown => filter_dropdown.addEventListener('click', handleDropdown) );
 const filter_headers = document.querySelectorAll('.filter_header');
 const filter_contents = document.querySelectorAll('.filter_content');
 const filter_contents_values = document.querySelectorAll('.filter_content_values');
@@ -242,6 +254,6 @@ let filter_items;
 let info_panes;
 let info_buttons;
 
-filter_dropdowns.forEach( filter_dropdown => filter_dropdown.addEventListener('click', handleDropdown) );
+
 
 mainFunc();

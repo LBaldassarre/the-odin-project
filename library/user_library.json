@@ -8,7 +8,7 @@
       "number_of_pages": 328,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/1539353-L.jpg"
+      "cover_image": "./img/1994.jpg"
     },
     {
       "title": "To Kill a Mockingbird",
@@ -18,7 +18,7 @@
       "number_of_pages": 281,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/8227261-L.jpg"
+      "cover_image": "./img/to-kill-a-mockingbird.jpg"
     },
     {
       "title": "Moby-Dick",
@@ -28,7 +28,7 @@
       "number_of_pages": 585,
       "owned": false,
       "read": false,
-      "cover_image": "https://covers.openlibrary.org/b/id/11144646-L.jpg"
+      "cover_image": "./img/moby-dick.jpg"
     },
     {
       "title": "The Great Gatsby",
@@ -38,7 +38,7 @@
       "number_of_pages": 180,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/10610706-L.jpg"
+      "cover_image": "./img/the-great-gatsby.jpg"
     },
     {
       "title": "Pride and Prejudice",
@@ -48,7 +48,7 @@
       "number_of_pages": 279,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/7440547-L.jpg"
+      "cover_image": "./img/pride-and-prejudice.jpg"
     },
     {
       "title": "The Catcher in the Rye",
@@ -58,7 +58,7 @@
       "number_of_pages": 277,
       "owned": false,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/10521853-L.jpg"
+      "cover_image": "./img/the-catcher-in-the-rye.jpg"
     },
     {
       "title": "Brave New World",
@@ -68,7 +68,7 @@
       "number_of_pages": 268,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/10428750-L.jpg"
+      "cover_image": "./img/brave-new-world.jpg"
     },
     {
       "title": "Frankenstein",
@@ -78,7 +78,7 @@
       "number_of_pages": 280,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/8570781-L.jpg"
+      "cover_image": "./img/frankenstein.jpg"
     },
     {
       "title": "The Hobbit",
@@ -88,7 +88,7 @@
       "number_of_pages": 310,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/10571164-L.jpg"
+      "cover_image": "./img/the-hobbit.jpg"
     },
     {
       "title": "War and Peace",
@@ -98,7 +98,7 @@
       "number_of_pages": 1225,
       "owned": false,
       "read": false,
-      "cover_image": "https://covers.openlibrary.org/b/id/10879724-L.jpg"
+      "cover_image": "./img/war-and-peace.jpg"
     },
     {
       "title": "The Odyssey",
@@ -108,7 +108,7 @@
       "number_of_pages": 400,
       "owned": true,
       "read": false,
-      "cover_image": "https://covers.openlibrary.org/b/id/10251631-L.jpg"
+      "cover_image": "./img/the-odyssey.jpg"
     },
     {
       "title": "Sapiens: A Brief History of Humankind",
@@ -118,7 +118,7 @@
       "number_of_pages": 443,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/10223240-L.jpg"
+      "cover_image": "./img/sapiens.jpg"
     },
     {
       "title": "The Picture of Dorian Gray",
@@ -128,7 +128,7 @@
       "number_of_pages": 254,
       "owned": false,
       "read": false,
-      "cover_image": "https://covers.openlibrary.org/b/id/10677350-L.jpg"
+      "cover_image": "./img/the-picture-of-dorian-gray.jpg"
     },
     {
       "title": "The Chronicles of Narnia",
@@ -138,7 +138,7 @@
       "number_of_pages": 778,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/10571191-L.jpg"
+      "cover_image": "./img/narnia.jpg"
     },
     {
       "title": "The Alchemist",
@@ -148,7 +148,7 @@
       "number_of_pages": 208,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/8107272-L.jpg"
+      "cover_image": "./img/the-alchemist.jpg"
     },
     {
       "title": "The Catch-22",
@@ -158,7 +158,7 @@
       "number_of_pages": 453,
       "owned": false,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/10175355-L.jpg"
+      "cover_image": "./img/the-catch22.jpg"
     },
     {
       "title": "The Road",
@@ -168,7 +168,7 @@
       "number_of_pages": 287,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/10170924-L.jpg"
+      "cover_image": "./img/the-road.jpg"
     },
     {
       "title": "The Silent Patient",
@@ -178,7 +178,7 @@
       "number_of_pages": 325,
       "owned": true,
       "read": false,
-      "cover_image": "https://covers.openlibrary.org/b/id/11212699-L.jpg"
+      "cover_image": "./img/the-silent-patient.jpg"
     },
     {
       "title": "Educated",
@@ -188,7 +188,7 @@
       "number_of_pages": 334,
       "owned": true,
       "read": true,
-      "cover_image": "https://covers.openlibrary.org/b/id/10250197-L.jpg"
+      "cover_image": "./img/educated.jpg"
     },
     {
       "title": "The Girl on the Train",
@@ -198,7 +198,7 @@
       "number_of_pages": 395,
       "owned": false,
       "read": false,
-      "cover_image": "https://covers.openlibrary.org/b/id/8495371-L.jpg"
+      "cover_image": "./img/the-girl-on-the-train.jpg"
     }
   ]
 }
