@@ -23,6 +23,7 @@ function addNewBook (book) {
     )
 
     library.push(newBook);
+    fullLibrary.push(newBook);
 }
 
 async function loadBooks() {
@@ -86,7 +87,7 @@ function addFilterValues () {
             case '1':
                 let ownedHTML = '<ul>'
                 owned.forEach(value => {
-                    ownedHTML += `\n <li> <span>${value}</span> <input type="checkbox" id="1"> </input> </li>`
+                    ownedHTML += `\n <li id="1" class="filter_item"> <span>${value}</span> <input type="checkbox" id="1"> </input> </li>`
                 });
                 ownedHTML += '\n </ul>'
                 filter.innerHTML = ownedHTML;
@@ -94,7 +95,7 @@ function addFilterValues () {
             case '2':
                 let readHTML = '<ul>'
                 read.forEach(value => {
-                    readHTML += `\n <li> <span>${value}</span> <input type="checkbox" id="1">  </input> </li>`
+                    readHTML += `\n <li id="2" class="filter_item"> <span>${value}</span> <input type="checkbox" id="2">  </input> </li>`
                 });
                 readHTML += '\n </ul>'
                 filter.innerHTML = readHTML;
@@ -102,7 +103,7 @@ function addFilterValues () {
             case '3':
                 let categoriesHTML = '<ul>'
                 categories.forEach(value => {
-                    categoriesHTML += `\n <li> <span>${value}</span> <input type="checkbox" id="1"> </input> </li>`
+                    categoriesHTML += `\n <li id="3" class="filter_item"> <span>${value}</span> <input type="checkbox" id="3"> </input> </li>`
                 });
                 categoriesHTML += '\n </ul>'
                 filter.innerHTML = categoriesHTML;
@@ -110,7 +111,7 @@ function addFilterValues () {
             case '4':
                 let authorsHTML = '<ul>'
                 authors.forEach(value => {
-                    authorsHTML += `\n <li> <span>${value}</span> <input type="checkbox" id="1"> </input> </li>`
+                    authorsHTML += `\n <li id="4" class="filter_item"> <span>${value}</span> <input type="checkbox" id="4"> </input> </li>`
                 });
                 authorsHTML += '\n </ul>'
                 filter.innerHTML = authorsHTML;
@@ -174,35 +175,73 @@ async function uniqueFilters() {
     categories = [...new Set(categories)];
 }
 
-async function loadContent() {
+async function InitialLoad() {
     await loadBooks();
     await generalPopulate();
     await uniqueFilters()
         .then(addFilterValues());
 }
 
-let owned = [];
-let read = [];
-let authors = [];
-let categories = [];
-let library = [];
-loadContent()
-    .then(console.log('ready'))
+async function filterLibrary() {
+    library = fullLibrary;
+    let filterArray = [[], [], [], []];
+    filter_items.forEach(item => {
+        let id = item.attributes.id.value;
+        let checked = item.children[1].checked;
+        let value = item.children[0].innerHTML;
+        if(checked) {filterArray[id-1].push(value)};
+    })
     
+    if(filterArray[0].length > 0) {
+    library = library.filter(book => filterArray[0].includes(book.owned.toString()))
+    }
+    if(filterArray[1].length > 0) {
+        library = library.filter(book => filterArray[1].includes(book.read.toString()))
+    }
+    if(filterArray[2].length > 0) {
+        library = library.filter(book => filterArray[2].includes(book.category))
+    }
+    if(filterArray[3].length > 0) {
+        library = library.filter(book => filterArray[3].includes(book.author))
+    }
+    
+    main.innerHTML = '';
+    await generalPopulate();
+}
+
+async function mainFunc () {
+    await InitialLoad()
+    .then(() => {
+        filter_items = document.querySelectorAll('.filter_item');
+        filter_items.forEach(item => {
+            item.addEventListener('click', () => {
+                filterLibrary();
+            })
+        })
+        info_panes = document.querySelectorAll('.info_pane');
+        info_buttons = document.querySelectorAll('.info_button');
+        info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+    })
+    .then(console.log('ready'))
+}
 
 const filters = document.querySelectorAll('.filter');
 const filter_dropdowns = document.querySelectorAll('.dropdown');
 const filter_headers = document.querySelectorAll('.filter_header');
 const filter_contents = document.querySelectorAll('.filter_content');
 const filter_contents_values = document.querySelectorAll('.filter_content_values');
-const main = document.querySelector('main');
+const main = document.querySelector('main'); 
 
+let owned = [];
+let read = [];
+let authors = [];
+let categories = [];
+let library = [];
+let fullLibrary = [];
+let filter_items;
 let info_panes;
 let info_buttons;
-document.addEventListener('DOMNodeInserted', () => {
-    info_panes = document.querySelectorAll('.info_pane');
-    info_buttons = document.querySelectorAll('.info_button');
-    info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
-});
 
 filter_dropdowns.forEach( filter_dropdown => filter_dropdown.addEventListener('click', handleDropdown) );
+
+mainFunc();
