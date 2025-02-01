@@ -15,7 +15,7 @@
     <div class="add_book_container"></div>
     <form action="" method="POST" enctype="multipart/form-data" class="add_book_form">
         <div class="add_book_info">
-            <button class="material-symbols-outlined form_btn_close">
+            <button type="reset" class="material-symbols-outlined form_btn_close">
                 close
             </button>
             <div>
@@ -25,6 +25,10 @@
             <div>
                 <label for="author">Author</label>
                 <input type="text" id="author" name="author" maxlength="30">
+            </div>
+            <div>
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" maxlength="200">
             </div>
             <div>
                 <label for="summary">Summary</label>

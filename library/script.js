@@ -236,13 +236,13 @@ async function mainFunc () {
     .then(console.log('ready'))
 }
 
-function handleAddBookBtn (e) {
+function handleAddBookBtn () {
     if (!add_book_container.className.includes('open')){
         add_book_container.classList.add('open');
         add_book_form.classList.add('open');
     } else {
         add_book_container.classList.remove('open');
-        add_book_form.classList.remove('open'); 
+        add_book_form.classList.remove('open');
     }
 }
 
@@ -252,9 +252,64 @@ function handleCoverInput (e) {
     }
 }
 
-function handleAddBookSubmit (e) {
+async function handleAddBookSubmit (e) {
     e.preventDefault();
-    console.log('submit');
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const summary = document.getElementById('summary').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked;
+    const owned = document.getElementById('owned').checked;
+    const cover = document.getElementById('cover');
+    const category = document.getElementById('category').value;
+    const newBook = {
+        title,
+        author,
+        summary,
+        category,
+        pages,
+        read,
+        owned,
+        cover_image: ''
+    }
+
+    if (cover.files && cover.files[0]) {
+        const fr = new FileReader();
+        fr.readAsDataURL(cover.files[0]);
+        fr.addEventListener('load', () => {
+            const cover_image = fr.result;
+            newBook.cover_image = cover_image;
+            addNewBook(newBook);
+            main.innerHTML = '';
+            generalPopulate()
+            .then(() => {
+                filter_items = document.querySelectorAll('.filter_item');
+                filter_items.forEach(item => {
+                    item.addEventListener('click', () => {
+                        filterLibrary();
+                    })
+                })
+                info_panes = document.querySelectorAll('.info_pane');
+                info_buttons = document.querySelectorAll('.info_button');
+                info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+            });
+        })
+    } else {
+        addNewBook(newBook);
+        main.innerHTML = '';
+        generalPopulate()
+        .then(() => {
+            filter_items = document.querySelectorAll('.filter_item');
+            filter_items.forEach(item => {
+                item.addEventListener('click', () => {
+                    filterLibrary();
+                })
+            })
+            info_panes = document.querySelectorAll('.info_pane');
+            info_buttons = document.querySelectorAll('.info_button');
+            info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+        });
+    }
 }
 
 const filters = document.querySelectorAll('.filter');
