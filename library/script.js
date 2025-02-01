@@ -240,7 +240,21 @@ function handleAddBookBtn (e) {
     if (!add_book_container.className.includes('open')){
         add_book_container.classList.add('open');
         add_book_form.classList.add('open');
+    } else {
+        add_book_container.classList.remove('open');
+        add_book_form.classList.remove('open'); 
     }
+}
+
+function handleCoverInput (e) {
+    if (e?.target?.files && e.target.files[0]) {
+        add_book_cover_img.src = URL.createObjectURL(e.target.files[0]);
+    }
+}
+
+function handleAddBookSubmit (e) {
+    e.preventDefault();
+    console.log('submit');
 }
 
 const filters = document.querySelectorAll('.filter');
@@ -254,8 +268,16 @@ const filter_contents_values = document.querySelectorAll('.filter_content_values
 const main = document.querySelector('main'); 
 const add_book_container = document.querySelector('.add_book_container');
 const add_book_form = document.querySelector('.add_book_form');
+add_book_form.addEventListener('submit', handleAddBookSubmit);
 const add_book_btn = document.querySelector('.add_book_btn');
 add_book_btn.addEventListener('click', handleAddBookBtn);
+const form_btn_close = document.querySelector('.form_btn_close');
+form_btn_close.addEventListener('click', handleAddBookBtn);
+const add_book_cover_input = document.querySelector('.input_cover');
+const add_book_cover_img = document.querySelector('.img_cover');
+add_book_cover_input.addEventListener('change', handleCoverInput);
+
+
 
 let owned = [];
 let read = [];

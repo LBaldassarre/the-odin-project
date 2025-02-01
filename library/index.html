@@ -13,19 +13,22 @@
 <body>
 
     <div class="add_book_container"></div>
-    <form action="" class="add_book_form">
-        <div>
+    <form action="" method="POST" enctype="multipart/form-data" class="add_book_form">
+        <div class="add_book_info">
+            <button class="material-symbols-outlined form_btn_close">
+                close
+            </button>
             <div>
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title">
+                <input type="text" id="title" name="title" maxlength="30">
             </div>
             <div>
                 <label for="author">Author</label>
-                <input type="text" id="author" name="author">
+                <input type="text" id="author" name="author" maxlength="30">
             </div>
             <div>
                 <label for="summary">Summary</label>
-                <input type="text" id="summary" name="summary">
+                <input type="text" id="summary" name="summary" maxlength="200">
             </div>
             <div>
                 <label for="pages">Pages</label>
@@ -40,11 +43,15 @@
                 <input type="checkbox" id="owned" name="owned">
             </div>
         </div>
-        <div>
+        <div class="add_book_cover">
             <label for="cover">Cover</label>
-            <input type="image" name="cover" id="cover">
+            <input class="input_cover" type="file" accept="image/*" name="cover" id="cover">
+            <div class="add_book_cover_preview cover">
+                <img class="img_cover" src="" alt="">
+            </div>
         </div>
 
+        <button class="add_book_save" type="reset">Reset</button>
         <button class="add_book_save" type="submit">Save</button>
     </form>
 
