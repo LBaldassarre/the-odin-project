@@ -289,3 +289,61 @@ main {
     place-self: center;
     cursor: pointer;
 }
+
+.add_book_btn {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: 100%;
+    font-size: 50px;
+    border: none;
+    transition: linear 0.2s;
+}
+
+.add_book_btn:hover {
+    font-size: 56px;
+    right: 47px;
+    bottom: 47px;
+    transition: linear 0.2s;
+}
+
+.add_book_container {
+    display: none;
+}
+
+.add_book_container.open{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--white);
+    opacity: 0.7;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add_book_form {
+    display: none;
+}
+
+.add_book_form.open {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10fr 1fr;
+    position: fixed;
+    padding: 30px;
+    width: 50vw;
+    height: 50vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 1px 3px 5px var(--shadow);
+    z-index: 20;
+}

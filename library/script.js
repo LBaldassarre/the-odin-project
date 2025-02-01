@@ -236,13 +236,26 @@ async function mainFunc () {
     .then(console.log('ready'))
 }
 
+function handleAddBookBtn (e) {
+    if (!add_book_container.className.includes('open')){
+        add_book_container.classList.add('open');
+        add_book_form.classList.add('open');
+    }
+}
+
 const filters = document.querySelectorAll('.filter');
 const filter_dropdowns = document.querySelectorAll('.dropdown');
-filter_dropdowns.forEach( filter_dropdown => filter_dropdown.addEventListener('click', handleDropdown) );
+filter_dropdowns.forEach( 
+    filter_dropdown => filter_dropdown.addEventListener('click', handleDropdown) 
+);
 const filter_headers = document.querySelectorAll('.filter_header');
 const filter_contents = document.querySelectorAll('.filter_content');
 const filter_contents_values = document.querySelectorAll('.filter_content_values');
 const main = document.querySelector('main'); 
+const add_book_container = document.querySelector('.add_book_container');
+const add_book_form = document.querySelector('.add_book_form');
+const add_book_btn = document.querySelector('.add_book_btn');
+add_book_btn.addEventListener('click', handleAddBookBtn);
 
 let owned = [];
 let read = [];
