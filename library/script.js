@@ -272,6 +272,7 @@ async function handleAddBookSubmit (e) {
         owned,
         cover_image: ''
     }
+    main.innerHTML = '';
 
     if (cover.files && cover.files[0]) {
         const fr = new FileReader();
@@ -280,8 +281,26 @@ async function handleAddBookSubmit (e) {
             const cover_image = fr.result;
             newBook.cover_image = cover_image;
             addNewBook(newBook);
-            main.innerHTML = '';
-            generalPopulate()
+            generalPopulate();
+            uniqueFilters()
+                .then(addFilterValues())
+                .then(() => {
+                    filter_items = document.querySelectorAll('.filter_item');
+                    filter_items.forEach(item => {
+                        item.addEventListener('click', () => {
+                            filterLibrary();
+                        })
+                    })
+                    info_panes = document.querySelectorAll('.info_pane');
+                    info_buttons = document.querySelectorAll('.info_button');
+                    info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+                })
+        })
+    } else {
+        addNewBook(newBook);
+        generalPopulate();
+        uniqueFilters()
+            .then(addFilterValues())
             .then(() => {
                 filter_items = document.querySelectorAll('.filter_item');
                 filter_items.forEach(item => {
@@ -292,23 +311,7 @@ async function handleAddBookSubmit (e) {
                 info_panes = document.querySelectorAll('.info_pane');
                 info_buttons = document.querySelectorAll('.info_button');
                 info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
-            });
-        })
-    } else {
-        addNewBook(newBook);
-        main.innerHTML = '';
-        generalPopulate()
-        .then(() => {
-            filter_items = document.querySelectorAll('.filter_item');
-            filter_items.forEach(item => {
-                item.addEventListener('click', () => {
-                    filterLibrary();
-                })
             })
-            info_panes = document.querySelectorAll('.info_pane');
-            info_buttons = document.querySelectorAll('.info_button');
-            info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
-        });
     }
 }
 

@@ -300,6 +300,7 @@ main {
     border-radius: 100%;
     font-size: 50px;
     border: none;
+    cursor: pointer;
     transition: linear 0.2s;
 }
 
@@ -313,6 +314,7 @@ main {
     transition: linear 0.2s;
     top: 10px;
     right: 10px;
+    cursor: pointer;
 }
 .add_book_btn:hover,
 .form_btn_close:hover {
