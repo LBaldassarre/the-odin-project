@@ -217,6 +217,10 @@ async function filterLibrary() {
             info_panes = document.querySelectorAll('.info_pane');
             info_buttons = document.querySelectorAll('.info_button');
             info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+            read_btn = document.querySelectorAll('.read');
+            owned_btn = document.querySelectorAll('.owned');
+            read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
+            owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
         });
 }
 
@@ -232,6 +236,10 @@ async function mainFunc () {
         info_panes = document.querySelectorAll('.info_pane');
         info_buttons = document.querySelectorAll('.info_button');
         info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+        read_btn = document.querySelectorAll('.read');
+        owned_btn = document.querySelectorAll('.owned');
+        read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
+        owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
     })
     .then(console.log('ready'))
 }
@@ -294,6 +302,10 @@ async function handleAddBookSubmit (e) {
                     info_panes = document.querySelectorAll('.info_pane');
                     info_buttons = document.querySelectorAll('.info_button');
                     info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+                    read_btn = document.querySelectorAll('.read');
+                    owned_btn = document.querySelectorAll('.owned');
+                    read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
+                    owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
                 })
         })
     } else {
@@ -311,8 +323,52 @@ async function handleAddBookSubmit (e) {
                 info_panes = document.querySelectorAll('.info_pane');
                 info_buttons = document.querySelectorAll('.info_button');
                 info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+                read_btn = document.querySelectorAll('.read');
+                owned_btn = document.querySelectorAll('.owned');
+                read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
+                owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
             })
     }
+}
+
+function handleRead (e) {
+    const title = e
+        .srcElement
+        .parentElement
+        .parentElement
+        .nextElementSibling
+        .children[0]
+        .children[0]
+        .textContent
+    const author = e
+        .srcElement
+        .parentElement
+        .parentElement
+        .nextElementSibling
+        .children[0]
+        .children[1]
+        .textContent
+    console.log(title, author);
+}
+
+function handleOwned (e) {
+    const title = e
+        .srcElement
+        .parentElement
+        .parentElement
+        .nextElementSibling
+        .children[0]
+        .children[0]
+        .textContent
+    const author = e
+        .srcElement
+        .parentElement
+        .parentElement
+        .nextElementSibling
+        .children[0]
+        .children[1]
+        .textContent
+    console.log(title, author);
 }
 
 const filters = document.querySelectorAll('.filter');
@@ -346,6 +402,8 @@ let fullLibrary = [];
 let filter_items;
 let info_panes;
 let info_buttons;
+let read_btn;
+let owned_btn;
 
 
 
