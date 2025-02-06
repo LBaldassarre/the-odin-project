@@ -271,7 +271,7 @@ main {
 .owned, 
 .read, 
 .info,
-.edit {
+.delete {
     place-self: center;
     cursor: pointer;
 }

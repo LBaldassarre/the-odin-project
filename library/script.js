@@ -63,8 +63,8 @@ function populateMain(book) {
                     <div class="summary">${book.summary}</div>
                 </div>
                 <div class="pages">Pages: ${book.number_of_pages}</div>
-                <div class="edit">
-                    <span class="material-symbols-outlined">border_color</span>
+                <div id="delete-${index}" class="delete">
+                    <span class="material-symbols-outlined">delete</span>
                 </div>
 
             </div>
@@ -81,7 +81,7 @@ function toggleContent (object) {
     }
 }
 
-function addFilterValues () {
+async function addFilterValues () {
     filter_contents_values.forEach(filter => {
         switch(filter.attributes.id.value){
             case '1':
@@ -207,21 +207,7 @@ async function filterLibrary() {
     
     main.innerHTML = '';
     await generalPopulate()
-        .then(() => {
-            filter_items = document.querySelectorAll('.filter_item');
-            filter_items.forEach(item => {
-                item.addEventListener('click', () => {
-                    filterLibrary();
-                })
-            })
-            info_panes = document.querySelectorAll('.info_pane');
-            info_buttons = document.querySelectorAll('.info_button');
-            info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
-            read_btn = document.querySelectorAll('.read');
-            owned_btn = document.querySelectorAll('.owned');
-            read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
-            owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
-        });
+        .then(reloadFilters);
 }
 
 async function mainFunc () {
@@ -258,8 +244,10 @@ async function reloadFilters () {
     info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
     read_btn = document.querySelectorAll('.read');
     owned_btn = document.querySelectorAll('.owned');
+    delete_btn = document.querySelectorAll('.delete');
     read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
     owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
+    delete_btn.forEach( btn => btn.addEventListener('click', handleDelete) );
 }
 
 async function handleAddBookSubmit (e) {
@@ -367,6 +355,41 @@ function handleOwned (e) {
             iconHTML.style.color = color;
         }
     })
+}
+
+function handleDelete (e) {
+    console.log('click');
+    const title = e
+        .srcElement
+        .parentElement
+        .parentElement
+        .children[0]
+        .children[0]
+        .textContent
+    const author = e
+        .srcElement
+        .parentElement
+        .parentElement
+        .children[0]
+        .children[1]
+        .textContent
+
+    let index;
+    library.forEach(book => {
+        if (book.title == title && book.author == author) {
+            book.owned = !book.owned;
+
+            index = library.indexOf(book);
+        }
+    })
+
+    library.splice(index, 1);
+
+    main.innerHTML = '';
+    generalPopulate()
+        .then(uniqueFilters)
+        .then(addFilterValues)
+        .then(reloadFilters);
 }
 
 const filters = document.querySelectorAll('.filter');
