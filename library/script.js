@@ -46,10 +46,10 @@ function populateMain(book) {
                     <img src="${book.cover_image}" alt="cover">
                 </div>
                 <div class="owned">
-                    <span style="color:${ownedColor};" class="material-symbols-outlined">book_4_spark</span>
+                    <span id="owned-${index}" style="color:${ownedColor};" class="material-symbols-outlined">book_4_spark</span>
                 </div>
                 <div class="read">
-                    <span style="color:${readColor};" class="material-symbols-outlined">menu_book</span>
+                    <span id="read-${index}" style="color:${readColor};" class="material-symbols-outlined">menu_book</span>
                 </div>
                 <div class="info">
                     <span id="${index}" class="material-symbols-outlined info_button">info</span>
@@ -226,21 +226,7 @@ async function filterLibrary() {
 
 async function mainFunc () {
     await InitialLoad()
-    .then(() => {
-        filter_items = document.querySelectorAll('.filter_item');
-        filter_items.forEach(item => {
-            item.addEventListener('click', () => {
-                filterLibrary();
-            })
-        })
-        info_panes = document.querySelectorAll('.info_pane');
-        info_buttons = document.querySelectorAll('.info_button');
-        info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
-        read_btn = document.querySelectorAll('.read');
-        owned_btn = document.querySelectorAll('.owned');
-        read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
-        owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
-    })
+    .then(reloadFilters)
     .then(console.log('ready'))
 }
 
@@ -258,6 +244,22 @@ function handleCoverInput (e) {
     if (e?.target?.files && e.target.files[0]) {
         add_book_cover_img.src = URL.createObjectURL(e.target.files[0]);
     }
+}
+
+async function reloadFilters () {
+    filter_items = document.querySelectorAll('.filter_item');
+    filter_items.forEach(item => {
+        item.addEventListener('click', () => {
+            filterLibrary();
+        })
+    })
+    info_panes = document.querySelectorAll('.info_pane');
+    info_buttons = document.querySelectorAll('.info_button');
+    info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+    read_btn = document.querySelectorAll('.read');
+    owned_btn = document.querySelectorAll('.owned');
+    read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
+    owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
 }
 
 async function handleAddBookSubmit (e) {
@@ -292,42 +294,14 @@ async function handleAddBookSubmit (e) {
             generalPopulate();
             uniqueFilters()
                 .then(addFilterValues())
-                .then(() => {
-                    filter_items = document.querySelectorAll('.filter_item');
-                    filter_items.forEach(item => {
-                        item.addEventListener('click', () => {
-                            filterLibrary();
-                        })
-                    })
-                    info_panes = document.querySelectorAll('.info_pane');
-                    info_buttons = document.querySelectorAll('.info_button');
-                    info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
-                    read_btn = document.querySelectorAll('.read');
-                    owned_btn = document.querySelectorAll('.owned');
-                    read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
-                    owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
-                })
+                .then(reloadFilters())
         })
     } else {
         addNewBook(newBook);
         generalPopulate();
         uniqueFilters()
-            .then(addFilterValues())
-            .then(() => {
-                filter_items = document.querySelectorAll('.filter_item');
-                filter_items.forEach(item => {
-                    item.addEventListener('click', () => {
-                        filterLibrary();
-                    })
-                })
-                info_panes = document.querySelectorAll('.info_pane');
-                info_buttons = document.querySelectorAll('.info_button');
-                info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
-                read_btn = document.querySelectorAll('.read');
-                owned_btn = document.querySelectorAll('.owned');
-                read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
-                owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
-            })
+            .then(addFilterValues)
+            .then(reloadFilters)
     }
 }
 
@@ -348,7 +322,20 @@ function handleRead (e) {
         .children[0]
         .children[1]
         .textContent
-    console.log(title, author);
+
+    library.forEach(book => {
+        if (book.title == title && book.author == author) {
+            book.read = !book.read;
+
+            const index = library.indexOf(book);
+            const color = book.read ? 'green' : 'black';
+            const iconHTML = document.getElementById(`read-${index}`);
+
+            iconHTML.style.color = color;
+        }
+    })
+
+    
 }
 
 function handleOwned (e) {
@@ -368,7 +355,18 @@ function handleOwned (e) {
         .children[0]
         .children[1]
         .textContent
-    console.log(title, author);
+
+    library.forEach(book => {
+        if (book.title == title && book.author == author) {
+            book.owned = !book.owned;
+
+            const index = library.indexOf(book);
+            const color = book.owned ? 'green' : 'black';
+            const iconHTML = document.getElementById(`owned-${index}`);
+
+            iconHTML.style.color = color;
+        }
+    })
 }
 
 const filters = document.querySelectorAll('.filter');

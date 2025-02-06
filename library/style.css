@@ -151,21 +151,6 @@ nav {
     transition: 0.5s;
 }
 
-.filter_content_sort li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-}
-
-.filter_content_sort button {
-    background-color: var(--white);
-    padding: 2px;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
 .filter_content_values {
     display: flex;
     flex-direction: column;
@@ -301,7 +286,6 @@ main {
     font-size: 50px;
     border: none;
     cursor: pointer;
-    transition: linear 0.2s;
 }
 
 .form_btn_close {
@@ -311,7 +295,6 @@ main {
     border-radius: 100%;
     font-size: 40px;
     border: none;
-    transition: linear 0.2s;
     top: 10px;
     right: 10px;
     cursor: pointer;
@@ -319,7 +302,16 @@ main {
 .add_book_btn:hover,
 .form_btn_close:hover {
     background-color: var(--blue-hover);
-    transition: linear 0.2s;
+}
+
+.add_book_btn:active {
+   right: 49px;
+   bottom: 48px;
+}
+.form_btn_close:active{
+    vertical-align: top;
+    margin-top: 2px;
+    margin-left: 1px;
 }
 
 .add_book_container {
@@ -351,8 +343,8 @@ main {
     gap: 20px;
     position: fixed;
     padding: 30px;
-    width: 50vw;
-    height: 50vh;
+    min-width: 50vw;
+    min-height: 50vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -392,4 +384,23 @@ main {
     flex-grow: 1;
     border: 1px solid var(--shadow);
     border-radius: 10px;
+}
+
+.add_book_save {
+    background-color: var(--blue);
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 1rem;
+}
+
+.add_book_save:hover {
+    background-color: var(--blue-hover);
+}
+
+.add_book_save:active {
+    vertical-align: top;
+    margin-top: 2px;
+    margin-left: 1px;
 }
