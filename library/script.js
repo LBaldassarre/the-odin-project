@@ -272,7 +272,7 @@ async function handleAddBookSubmit (e) {
     }
     main.innerHTML = '';
 
-    if (cover.files && cover.files[0]) {
+    if (cover.files[0]) {
         const fr = new FileReader();
         fr.readAsDataURL(cover.files[0]);
         fr.addEventListener('load', () => {
@@ -286,9 +286,9 @@ async function handleAddBookSubmit (e) {
         })
     } else {
         addNewBook(newBook);
-        generalPopulate();
-        uniqueFilters()
+        generalPopulate()
             .then(addFilterValues)
+            .then(uniqueFilters)
             .then(reloadFilters)
     }
 }
@@ -358,7 +358,6 @@ function handleOwned (e) {
 }
 
 function handleDelete (e) {
-    console.log('click');
     const title = e
         .srcElement
         .parentElement
@@ -374,21 +373,22 @@ function handleDelete (e) {
         .children[1]
         .textContent
 
-    let index;
-    library.forEach(book => {
-        if (book.title == title && book.author == author) {
-            book.owned = !book.owned;
+    const book = library.find(book => book.title == title && book.author == author)
 
-            index = library.indexOf(book);
-        }
-    })
+    library.splice(library.indexOf(book), 1);
+    fullLibrary.splice(fullLibrary.indexOf(book), 1);
 
-    library.splice(index, 1);
+    if (library.length < 1) {library = fullLibrary};
+
+    owned = [];
+    read = [];
+    authors = [];
+    categories = [];
 
     main.innerHTML = '';
     generalPopulate()
-        .then(uniqueFilters)
         .then(addFilterValues)
+        .then(uniqueFilters)
         .then(reloadFilters);
 }
 
