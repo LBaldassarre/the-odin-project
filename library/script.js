@@ -163,9 +163,11 @@ function getFilters(book) {
 
 async function generalPopulate() {
     library.forEach(book => {
-        getFilters(book);
         populateMain(book);
     });
+    fullLibrary.forEach(book => {
+        getFilters(book);
+    })
 }
 
 async function uniqueFilters() {
@@ -387,8 +389,8 @@ function handleDelete (e) {
 
     main.innerHTML = '';
     generalPopulate()
+        .then(uniqueFilters)    
         .then(addFilterValues)
-        .then(uniqueFilters)
         .then(reloadFilters);
 }
 
