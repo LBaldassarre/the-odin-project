@@ -32,6 +32,7 @@ header {
 nav {
     width: 100%;
     display: flex;
+    z-index: 10;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
@@ -50,20 +51,61 @@ nav {
 }
 
 .user {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    max-height: 40px;
 }
 
-.user .icon {
+.user-dropdown {
+    display: none;
+}
+
+.user-dropdown.open {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: visible;
+    width: 120px;
+    height: 100px;
+    background-color: var(--white);
+    border: 1px solid var(--shadow);
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+    overflow: visible;
+    transition: 0.5s;
+    border-top: none;
+}
+
+.user-dropdown ul {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+.user-tag {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    cursor: pointer;
+    width: 120px;
+    padding: 0 5px;
+}
+
+.user-tag.open {
+    border: 1px solid var(--shadow);
+    border-bottom: 0;
+    border-top: 0;
+}
+
+.user-tag .icon {
     height: 40px;
     width: 40px;
     border-radius: 100%;
     background-color: var(--yellow);
 }
 
-.user .name {
+.user-tag .name {
     font-size: 1.2rem;
 }
 

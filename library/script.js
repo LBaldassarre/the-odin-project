@@ -394,7 +394,20 @@ function handleDelete (e) {
         .then(reloadFilters);
 }
 
+function handleUserDropdown (e) {
+    const parentElement = e.target.parentElement;
+    if (parentElement.className == 'user') {
+        toggleContent(parentElement.children[1]);
+        toggleContent(parentElement.children[0]);
+    } else {
+        toggleContent(parentElement.parentElement.children[1]);
+        toggleContent(parentElement.parentElement.children[0]);
+    }
+}
+
 const filters = document.querySelectorAll('.filter');
+const user_tag = document.querySelector('.user-tag');
+user_tag.addEventListener('click', handleUserDropdown);
 const filter_dropdowns = document.querySelectorAll('.dropdown');
 filter_dropdowns.forEach( 
     filter_dropdown => filter_dropdown.addEventListener('click', handleDropdown) 
