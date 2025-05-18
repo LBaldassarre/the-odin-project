@@ -9,3 +9,7 @@ gameBoardTest.showGameBoard();
 
 const player1 = playerFactory.createPlayer('Player1', 'X');
 player1.showAll();
+
+playerFactory.showIds();
+playerFactory.showPlayersCreated();
+playerFactory.showPlayers();

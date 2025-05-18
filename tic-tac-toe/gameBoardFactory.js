@@ -15,7 +15,7 @@ const GameBoardFactory = function () {
     const appendHistory = (gameBoard) => {history.push(gameBoard)};
 
     const createGameBoard = function () {
-        const gameBoardId = id_list.length === 0 ? 1 : id_list[id_list.length - 1] + 1;
+        const gameBoardId = id_list.length === 0 ? 0 : id_list[id_list.length - 1] + 1;
         gameBoardsCreated ++;
         id_list = [...id_list, gameBoardId];
         let moves = [];
