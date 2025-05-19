@@ -1,15 +1,10 @@
-import GameBoardFactory from "./gameBoardFactory.js";
-import playerFactory from "./playerFactory.js";
+import controller from "./controller.js";
 
-const gameBoardTest = GameBoardFactory.createGameBoard();
+const p1Name = 'Mark';
+const p1Icon = 'X';
+const p2Name = 'Julia';
+const p2Icon = 'O';
 
-GameBoardFactory.showAll();
-gameBoardTest.showGameBoardId();
-gameBoardTest.showGameBoard();
+const testMatch = controller.createMatch(p1Name, p1Icon, p2Name, p2Icon);
 
-const player1 = playerFactory.createPlayer('Player1', 'X');
-player1.showAll();
-
-playerFactory.showIds();
-playerFactory.showPlayersCreated();
-playerFactory.showPlayers();
+testMatch.startMatch();
