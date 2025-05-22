@@ -44,6 +44,14 @@ const GameBoardFactory = function () {
             board[row][col] = mark;
             updateMoves(move);
         };
+        const getCell = (row, col) => {
+
+            if (row < 0 || col < 0 || row > 2 || col > 2) {
+                return 'Out of Bounce';
+            }
+
+            return board[row][col];
+        };
 
 
         return {
@@ -51,6 +59,7 @@ const GameBoardFactory = function () {
             showGameBoardId,
             showGameBoard,
             updateGameBoard,
+            getCell
         };
     }
 
