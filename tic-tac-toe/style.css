@@ -1,0 +1,81 @@
+:root {
+    --beige: rgb(244, 241, 222);
+    --orange: rgb(224, 122, 95);
+    --orange-hover: rgb(247, 190, 174);
+    --blue: rgb(61, 64, 91);
+    --blue-hover: rgb(196, 201, 245);
+    --green: rgb(129, 178, 154);
+    --sand: rgb(242, 204, 143);
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: var(--beige);
+}
+
+body > div {
+    flex-grow: 1;
+    margin: 10px;
+}
+
+.l-pane, .r-pane {
+    max-width: 25vw;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    padding: 20px;
+}
+
+.game-board {
+    background-color: var(--sand);
+    justify-self: center;
+    align-self: center;
+    width: 60%;
+    height: 80%;
+    grid-row: 2;
+    box-shadow: 0px 1px 5px black;
+    border-radius: 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 10px;
+    gap: 10px;
+}
+
+.cell {
+    background-color: var(--beige);
+    box-shadow: 0px 1px 5px black;
+    border-radius: 2%;
+}
+
+.cell:hover {
+    background-color: var(--blue-hover);
+}
+
+.start-reset {
+    justify-self: center;
+    align-self: center;
+    grid-row: 3;
+}
+
+.start-reset > button {
+    border: none;
+    box-shadow: 0px 1px 5px black;
+    background-color: var(--orange);
+    padding: 10px 50px;
+    border-radius: 5%;
+    font-weight: bold;
+}
+
+.start-reset > button:hover {
+    background-color: var(--orange-hover);
+}
