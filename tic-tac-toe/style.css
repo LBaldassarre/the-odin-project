@@ -1,11 +1,11 @@
 :root {
-    --beige: rgb(244, 241, 222);
-    --orange: rgb(224, 122, 95);
-    --orange-hover: rgb(247, 190, 174);
-    --blue: rgb(61, 64, 91);
-    --blue-hover: rgb(196, 201, 245);
-    --green: rgb(129, 178, 154);
-    --sand: rgb(242, 204, 143);
+    --light-gray: #f5f5f5;
+    --gray: #d6d7d7;
+    --orange: #ea5c1f;
+    --orange-hover: #f0a787;
+    --blue: #4f5d75;
+    --blue-hover: #b3cefd;
+    --dark-blue: #212431;
 }
 
 * {
@@ -17,7 +17,7 @@
 body {
     display: flex;
     height: 100vh;
-    background-color: var(--beige);
+    background-color: var(--light-gray);
 }
 
 body > div {
@@ -36,7 +36,7 @@ body > div {
 }
 
 .game-board {
-    background-color: var(--sand);
+    background-color: var(--gray);
     justify-self: center;
     align-self: center;
     width: 60%;
@@ -52,7 +52,7 @@ body > div {
 }
 
 .cell {
-    background-color: var(--beige);
+    background-color: var(--light-gray);
     box-shadow: 0px 1px 5px black;
     border-radius: 2%;
 }
