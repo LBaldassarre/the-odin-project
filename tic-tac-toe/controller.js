@@ -4,7 +4,8 @@ import playerFactory from "./playerFactory.js";
 const controller = function () {
 
     let id_list = [];
-    
+
+
     const createMatch = function (p1Name, p1Icon, p2Name, p2Icon) {
         
         const id = id_list.length === 0 ? 0 : id_list[id_list.length - 1] + 1;
@@ -13,31 +14,66 @@ const controller = function () {
         const player1 = playerFactory.createPlayer(p1Name, p1Icon);
         const player2 = playerFactory.createPlayer(p2Name, p2Icon);
 
-        const playerMove = function(playerName, playerIcon, moveCount) {
-            console.log(`${playerName} Turns`);
+        let currentCell = null;
 
-                    let row = prompt('row: ');
-                    while (row > 2 || row == "") {
-                        row = prompt('Out of Range, chose again: ');
-                    };
-
-                    let col = prompt('col: ');
-                    while (col > 2 || col == "") {
-                        col = prompt('Out of Range, chose again: ');
-                    };
-
-
-                    gameBoard.updateGameBoard(playerName, playerIcon, row, col);
-                    gameBoard.showGameBoard();
-
-                    if (moveCount >= 5) {
-
-                        prompt('MoveCount >= 5');
-
-                        winnerCheck(row, col, gameBoard, playerIcon, playerName);
-
-                    }
+        function waitForCellClick() {
+            return new Promise((resolve) => {
+            currentCell = resolve;
+            });
         }
+
+        const gameBoardCells = document.querySelectorAll('.cell');
+
+        const waitForClick = () => {
+            return new Promise((resolve) => {
+                const handler = (e) => {
+                const cell = e.target;
+                if (!cell.classList.contains('cell')) return;
+                
+                const row = parseInt(cell.id[0]);
+                const col = parseInt(cell.id[1]);
+
+                if (cell.textContent !== '') return; // prevent overwriting
+
+                // Remove listener after one valid click
+                gameBoardCells.forEach(c => c.removeEventListener('click', handler));
+                resolve([row, col]);
+                };
+
+                gameBoardCells.forEach(cell => {
+                cell.addEventListener('click', handler);
+                });
+            });
+        };
+
+
+
+        const playerMove = async function(playerName, playerIcon, moveCount) {
+            console.log(`${playerName}'s turn`);
+
+            const [row, col] = await waitForClick();
+
+            const cellId = row + '' + col;
+            console.log(cellId);
+
+            function checkCell (cell) {
+                return cell.id == cellId;
+            }
+
+            const gameBoardCellsArray = Array.from(gameBoardCells)
+
+            const cell = gameBoardCellsArray.find(checkCell);
+
+            cell.innerHTML = playerIcon;
+
+            gameBoard.updateGameBoard(playerName, playerIcon, row, col);
+            gameBoard.showGameBoard();
+
+            if (moveCount >= 5) {
+                console.log('MoveCount >= 5');
+                winnerCheck(row, col, gameBoard, playerIcon, playerName);
+            }
+        };
 
         function checkUp (row, col, gameBoard, playerIcon) {
             return {
@@ -99,8 +135,6 @@ const controller = function () {
 
         const searchSecondIcon = function (row, col, gameBoard, playerIcon) {
 
-            prompt('Second Search');
-
             const direction_list = [
                 checkUp, 
                 checkDown, 
@@ -113,16 +147,13 @@ const controller = function () {
             ];
 
             for (const dirCheck of direction_list) {
-                prompt('Second Search Loop');
                 console.log(dirCheck);
-                prompt('Execute dirCheck');
                 const cellCheck = dirCheck(row, col, gameBoard, playerIcon).check;
                 const direction = dirCheck;
                 const second_row = dirCheck(row, col, gameBoard, playerIcon).row;
                 const second_col = dirCheck(row, col, gameBoard, playerIcon).col;
                 if (cellCheck) {
                     console.log(direction, second_row, second_col);
-                    prompt('Second Search Done');
                     return {
                         direction,
                         second_row,
@@ -135,8 +166,6 @@ const controller = function () {
         
         const winnerCheck = function (row, col, gameBoard, playerIcon, playerName) {
 
-             prompt('Start Winner Check');
-
             const secondIconSearch = searchSecondIcon(row, col, gameBoard, playerIcon);
             const direction = secondIconSearch.direction;
             const third_row = secondIconSearch.second_row;
@@ -148,21 +177,23 @@ const controller = function () {
 
         };
         
-        const startMatch = function () {
+        const startMatch = async function () {
 
             let moveCount = 0;
 
             while (moveCount < 6) {
 
                 moveCount ++;
+                currentCell = null;
 
                 if (moveCount % 2 === 1) {
 
-                    playerMove(p1Name, p1Icon, moveCount);
+
+                    await playerMove(p1Name, p1Icon, moveCount);
 
                 } else {
 
-                    playerMove(p2Name, p2Icon, moveCount);
+                    await playerMove(p2Name, p2Icon, moveCount);
 
                 }
 
