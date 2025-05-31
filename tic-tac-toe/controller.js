@@ -1,5 +1,6 @@
 import GameBoardFactory from "./gameBoardFactory.js";
 import playerFactory from "./playerFactory.js";
+import updateHTML from "./updateHTML.js";
 
 const controller = function () {
 
@@ -23,6 +24,7 @@ const controller = function () {
         }
 
         const gameBoardCells = document.querySelectorAll('.cell');
+        const gameBoardCellsArray = Array.from(document.querySelectorAll('.cell'));
 
         const waitForClick = () => {
             return new Promise((resolve) => {
@@ -53,18 +55,7 @@ const controller = function () {
 
             const [row, col] = await waitForClick();
 
-            const cellId = row + '' + col;
-            console.log(cellId);
-
-            function checkCell (cell) {
-                return cell.id == cellId;
-            }
-
-            const gameBoardCellsArray = Array.from(gameBoardCells)
-
-            const cell = gameBoardCellsArray.find(checkCell);
-
-            cell.innerHTML = playerIcon;
+            updateHTML.updatePlayerChoice(gameBoardCellsArray, row, col, playerIcon);
 
             gameBoard.updateGameBoard(playerName, playerIcon, row, col);
             gameBoard.showGameBoard();
