@@ -8,6 +8,8 @@ const controller = function () {
 
 
     const createMatch = function (p1Name, p1Icon, p2Name, p2Icon, gameBoardCells) {
+
+        let restart = false;
         
         const id = id_list.length === 0 ? 0 : id_list[id_list.length - 1] + 1;
 
@@ -37,12 +39,13 @@ const controller = function () {
             });
         };
 
-
-
-        const playerMove = async function(playerName, playerIcon, moveCount) {
+        async function playerMove (playerName, playerIcon, moveCount) {
             console.log(`${playerName}'s turn`);
+            console.log(moveCount);
 
             const [row, col] = await waitForClick();
+
+            if (row == 9 && col == 9) {return};
 
             updateHTML.updatePlayerChoice(gameBoardCellsArray, row, col, playerIcon);
 
@@ -157,7 +160,7 @@ const controller = function () {
         
         const startMatch = async function () {
             let moveCount = 0;
-            while (moveCount < 6) {
+            while (!restart && moveCount < 6) {
                 moveCount ++;
                 if (moveCount % 2 === 1) {
                     await playerMove(p1Name, p1Icon, moveCount);
@@ -167,8 +170,15 @@ const controller = function () {
             }
         }
 
+        const stopMatch = function () {
+            restart = true;
+            gameBoardCellsArray[9].click();
+            gameBoardCells.forEach(cell => cell.cloneNode(true));
+        }
+
         return {
-            startMatch
+            startMatch,
+            stopMatch
         }
 
     };

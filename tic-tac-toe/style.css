@@ -65,7 +65,16 @@ body > div {
     background-color: var(--blue-hover);
 }
 
+.restart {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
 .start-reset {
+    display: flex;
+    gap: 50px;
     justify-self: center;
     align-self: center;
     grid-row: 3;
