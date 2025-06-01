@@ -13,9 +13,18 @@ const updateHTML = function () {
             cell.innerHTML = playerIcon;
     }
 
-    return {
-        updatePlayerChoice
+    const clearGameBoard = function (gameBoardCells) {
+        gameBoardCells.forEach(cell => {
+            cell.innerHTML = '';
+        })
     }
+
+    return {
+        updatePlayerChoice,
+        clearGameBoard
+    }
+
+    
 
 }
 

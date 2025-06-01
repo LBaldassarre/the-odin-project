@@ -7,24 +7,13 @@ const controller = function () {
     let id_list = [];
 
 
-    const createMatch = function (p1Name, p1Icon, p2Name, p2Icon) {
+    const createMatch = function (p1Name, p1Icon, p2Name, p2Icon, gameBoardCells) {
         
         const id = id_list.length === 0 ? 0 : id_list[id_list.length - 1] + 1;
 
         const gameBoard = GameBoardFactory.createGameBoard();
-        const player1 = playerFactory.createPlayer(p1Name, p1Icon);
-        const player2 = playerFactory.createPlayer(p2Name, p2Icon);
 
-        let currentCell = null;
-
-        function waitForCellClick() {
-            return new Promise((resolve) => {
-            currentCell = resolve;
-            });
-        }
-
-        const gameBoardCells = document.querySelectorAll('.cell');
-        const gameBoardCellsArray = Array.from(document.querySelectorAll('.cell'));
+        const gameBoardCellsArray = Array.from(gameBoardCells);
 
         const waitForClick = () => {
             return new Promise((resolve) => {
@@ -58,7 +47,6 @@ const controller = function () {
             updateHTML.updatePlayerChoice(gameBoardCellsArray, row, col, playerIcon);
 
             gameBoard.updateGameBoard(playerName, playerIcon, row, col);
-            gameBoard.showGameBoard();
 
             if (moveCount >= 5) {
                 console.log('MoveCount >= 5');
@@ -107,8 +95,7 @@ const controller = function () {
                 row: row-1,
                 col: col+1
             }
-        };
-        
+        };        
         function checkDownLeft (row, col, gameBoard, playerIcon) {
             return {
                 check: gameBoard.getCell(row+1, col-1) == playerIcon,
@@ -138,7 +125,6 @@ const controller = function () {
             ];
 
             for (const dirCheck of direction_list) {
-                console.log(dirCheck);
                 const cellCheck = dirCheck(row, col, gameBoard, playerIcon).check;
                 const direction = dirCheck;
                 const second_row = dirCheck(row, col, gameBoard, playerIcon).row;
@@ -158,6 +144,7 @@ const controller = function () {
         const winnerCheck = function (row, col, gameBoard, playerIcon, playerName) {
 
             const secondIconSearch = searchSecondIcon(row, col, gameBoard, playerIcon);
+            console.log(secondIconSearch);
             const direction = secondIconSearch.direction;
             const third_row = secondIconSearch.second_row;
             const third_col = secondIconSearch.second_col;
@@ -169,28 +156,15 @@ const controller = function () {
         };
         
         const startMatch = async function () {
-
             let moveCount = 0;
-
             while (moveCount < 6) {
-
                 moveCount ++;
-                currentCell = null;
-
                 if (moveCount % 2 === 1) {
-
-
                     await playerMove(p1Name, p1Icon, moveCount);
-
                 } else {
-
                     await playerMove(p2Name, p2Icon, moveCount);
-
                 }
-
-
             }
-
         }
 
         return {
