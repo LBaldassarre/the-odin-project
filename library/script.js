@@ -1,5 +1,8 @@
 
-function Book (title, author, summary, category, number_of_pages, owned, read, cover_image) {
+/* BOOK FUNCTIONS */
+//---------------------------------------------------------------------------------------//
+
+function BookObj (title, author, summary, category, number_of_pages, owned, read, cover_image) {
     this.title = title;
     this.author = author,
     this.summary = summary,
@@ -11,7 +14,7 @@ function Book (title, author, summary, category, number_of_pages, owned, read, c
 }
 
 function addNewBook (book) {
-    const newBook = new Book(
+    const newBook = new BookObj(
         book.title,
         book.author,
         book.summary,
@@ -24,14 +27,6 @@ function addNewBook (book) {
 
     library.push(newBook);
     fullLibrary.push(newBook);
-}
-
-async function loadBooks() {
-    await fetch('./user_library.json')
-            .then((response) => response.json())
-            .then((json) => [...json.books])
-            .then((books) => books.forEach(book => addNewBook(book)))
-            .then(console.log('done'));
 }
 
 function populateMain(book) {
@@ -73,13 +68,20 @@ function populateMain(book) {
         main.innerHTML += bookHTML;
 }
 
-function toggleContent (object) {
-    if (object.className.includes('open')) {
-        object.classList.remove('open');
-    } else {
-        object.classList.add('open');
-    }
+async function generalPopulate() {
+    library.forEach(book => {
+        populateMain(book);
+    });
+    fullLibrary.forEach(book => {
+        getFilters(book);
+    })
 }
+
+//---------------------------------------------------------------------------------------//
+
+
+/* FILTER  FUNCTIONS */
+//---------------------------------------------------------------------------------------//
 
 async function addFilterValues () {
     filter_contents_values.forEach(filter => {
@@ -141,17 +143,42 @@ function handleDropdown (e) {
     })
 }
 
-function handleInfoPane (e) {
-    const id = e.target.attributes.id.value
-    info_panes.forEach(info_pane => {
-        if (info_pane.attributes.id.value === id) {
-            toggleContent(info_pane);
-        } else {
-            if (info_pane.className.includes('open')) {
-                info_pane.classList.remove('open');
-            }
-        }
+async function uniqueFilters() {
+    owned = [...new Set(owned)];
+    read = [...new Set(read)];
+    authors = [...new Set(authors)];
+    categories = [...new Set(categories)];
+}
+
+async function reloadFilters () {
+    filter_items = document.querySelectorAll('.filter_item');
+    filter_items.forEach(item => {
+        item.addEventListener('click', () => {
+            filterLibrary();
+        })
     })
+    info_panes = document.querySelectorAll('.info_pane');
+    info_buttons = document.querySelectorAll('.info_button');
+    info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+    read_btn = document.querySelectorAll('.read');
+    owned_btn = document.querySelectorAll('.owned');
+    delete_btn = document.querySelectorAll('.delete');
+    read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
+    owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
+    delete_btn.forEach( btn => btn.addEventListener('click', handleDelete) );
+}
+
+//---------------------------------------------------------------------------------------//
+
+
+/* UTILS FUNCTIONS */
+//---------------------------------------------------------------------------------------//
+async function loadBooks() {
+    await fetch('./user_library.json')
+            .then((response) => response.json())
+            .then((json) => [...json.books])
+            .then((books) => books.forEach(book => addNewBook(book)))
+            .then(console.log('done'));
 }
 
 function getFilters(book) {
@@ -159,22 +186,6 @@ function getFilters(book) {
     read.push(book.read);
     authors.push(book.author);
     categories.push(book.category);
-}
-
-async function generalPopulate() {
-    library.forEach(book => {
-        populateMain(book);
-    });
-    fullLibrary.forEach(book => {
-        getFilters(book);
-    })
-}
-
-async function uniqueFilters() {
-    owned = [...new Set(owned)];
-    read = [...new Set(read)];
-    authors = [...new Set(authors)];
-    categories = [...new Set(categories)];
 }
 
 async function InitialLoad() {
@@ -234,24 +245,6 @@ function handleCoverInput (e) {
     }
 }
 
-async function reloadFilters () {
-    filter_items = document.querySelectorAll('.filter_item');
-    filter_items.forEach(item => {
-        item.addEventListener('click', () => {
-            filterLibrary();
-        })
-    })
-    info_panes = document.querySelectorAll('.info_pane');
-    info_buttons = document.querySelectorAll('.info_button');
-    info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
-    read_btn = document.querySelectorAll('.read');
-    owned_btn = document.querySelectorAll('.owned');
-    delete_btn = document.querySelectorAll('.delete');
-    read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
-    owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
-    delete_btn.forEach( btn => btn.addEventListener('click', handleDelete) );
-}
-
 async function handleAddBookSubmit (e) {
     e.preventDefault();
     const title = document.getElementById('title').value;
@@ -293,6 +286,19 @@ async function handleAddBookSubmit (e) {
             .then(uniqueFilters)
             .then(reloadFilters)
     }
+}
+
+function handleInfoPane (e) {
+    const id = e.target.attributes.id.value
+    info_panes.forEach(info_pane => {
+        if (info_pane.attributes.id.value === id) {
+            toggleContent(info_pane);
+        } else {
+            if (info_pane.className.includes('open')) {
+                info_pane.classList.remove('open');
+            }
+        }
+    })
 }
 
 function handleRead (e) {
@@ -402,6 +408,108 @@ function handleUserDropdown (e) {
     } else {
         toggleContent(parentElement.parentElement.children[1]);
         toggleContent(parentElement.parentElement.children[0]);
+    }
+}
+
+function toggleContent (object) {
+    if (object.className.includes('open')) {
+        object.classList.remove('open');
+    } else {
+        object.classList.add('open');
+    }
+}
+
+//---------------------------------------------------------------------------------------//
+
+class Book {
+    static fullLibrary = [];
+    static currentLibrary = [];
+
+    constructor(title, author, summary, category, number_of_pages, owned, read, cover_image) {
+        this.title = title;
+        this.author = author;
+        this.summary = summary;
+        this.category = category;
+        this.number_of_pages = number_of_pages;
+        this.owned = owned;
+        this.read = read;
+        this.cover_image = cover_image;
+
+        Book.currentLibrary.push(this);
+        Book.fullLibrary.push(this);
+    }
+
+    render () {
+        const index = Book.currentLibrary.indexOf(this);
+        const ownedColor = this.owned ? 'green' : 'black';
+        const readColor = this.read ? 'green' : 'black';
+        const bookHTML = 
+        `
+        <div class="book">
+            <div class="main_pane">
+                <div class="cover">
+                    <img src="${this.cover_image}" alt="cover">
+                </div>
+                <div class="owned">
+                    <span id="owned-${index}" style="color:${ownedColor};" class="material-symbols-outlined">book_4</span>
+                </div>
+                <div class="read">
+                    <span id="read-${index}" style="color:${readColor};" class="material-symbols-outlined">menu_book</span>
+                </div>
+                <div class="info">
+                    <span id="${index}" class="material-symbols-outlined info_button">info</span>
+                </div>
+            </div>
+            <div id="${index}" class="info_pane">
+                <div class="general_info">
+                    <div class="title">${this.title}</div>
+                    <div class="author">${this.author}</div>
+                    <div class="category">${this.category}</div>
+                    <div class="summary">${this.summary}</div>
+                </div>
+                <div class="pages">Pages: ${this.number_of_pages}</div>
+                <div id="delete-${index}" class="delete">
+                    <span class="material-symbols-outlined">delete</span>
+                </div>
+
+            </div>
+        </div>`;
+
+        main.innerHTML += bookHTML;
+    }
+
+    static async renderAll () {
+        Book.currentLibrary.forEach(book => book.render());
+        info_panes = document.querySelectorAll('.info_pane');
+        info_buttons = document.querySelectorAll('.info_button');
+        info_buttons.forEach( info_button => info_button.addEventListener('click', handleInfoPane) );
+        read_btn = document.querySelectorAll('.read');
+        owned_btn = document.querySelectorAll('.owned');
+        delete_btn = document.querySelectorAll('.delete');
+        read_btn.forEach( btn => btn.addEventListener('click', handleRead) );
+        owned_btn.forEach( btn => btn.addEventListener('click', handleOwned) );
+        delete_btn.forEach( btn => btn.addEventListener('click', handleDelete) );
+    }
+}
+
+class Utils {
+    static async loadBooks () {
+        await fetch('./user_library.json')
+            .then((response) => response.json())
+            .then((json) => [...json.books])
+            .then((books) => books.forEach(book => {
+                new Book(
+                    book.title,
+                    book.author,
+                    book.summary,
+                    book.category,
+                    book.number_of_pages,
+                    book.owned,
+                    book.read,
+                    book.cover_image
+                )
+            }))
+            .then(console.log('done'));
     }
 }
 
