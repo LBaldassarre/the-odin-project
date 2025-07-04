@@ -439,7 +439,15 @@ class Book {
         Book.fullLibrary.push(this);
     }
 
-    render () {
+    get fullLibrary () {
+        return Book.fullLibrary;
+    }
+
+    get currentLibrary () {
+        return Book.currentLibrary;
+    }
+
+    render (objectHTML) {
         const index = Book.currentLibrary.indexOf(this);
         const ownedColor = this.owned ? 'green' : 'black';
         const readColor = this.read ? 'green' : 'black';
@@ -475,7 +483,7 @@ class Book {
             </div>
         </div>`;
 
-        main.innerHTML += bookHTML;
+        objectHTML.innerHTML += bookHTML;
     }
 
     static async renderAll () {
@@ -492,8 +500,67 @@ class Book {
     }
 }
 
+class Filter {
+    static filters = [];
+
+    constructor(id, name, lables) {
+        this._id = id,
+        this._name = name,
+        this._lables = lables
+
+        Filter.filters.push(this);
+    }
+
+    static get filters() {
+        return Filter.filters;
+    }
+
+    get lables() {
+        return this._lables;
+    }
+
+    set lables(newLables) {
+        this._lables = newLables;
+    }
+
+    render(objectHTML) {
+        const id = this._id;
+        const name = this._name;
+        const lables = this._lables;
+
+        let lablesHTML = '<ul>';
+        lables.forEach(value => {
+            lablesHTML += `\n <li id="${id}" class="filter_item"> <span>${value}</span> <input type="checkbox" id="${id}"> </input> </li>`
+        });
+        lablesHTML += '\n </ul>';
+
+        const filterHTML = 
+        `<div id="${id}" class="filter">
+            <div id="${id}" class="filter_header">
+                <div class="filter_name">${name}</div>
+                <div class="filter_dropdown">
+                    <span id="${id}" class="material-symbols-outlined dropdown">keyboard_arrow_down</span>
+                </div>
+            </div>
+            <div id="${id}" class="filter_content">
+                <div id="${id}" class="filter_content_values">
+                    ${lablesHTML}                            
+                </div>
+            </div>
+        </div>
+        `;
+
+        objectHTML.innerHTML += filterHTML;
+    }
+
+    static renderAll(objectHTML) {
+        objectHTML.innerHTML = '';
+        Filter.filters.forEach(filter => filter.render(objectHTML));
+    }
+}
+
 class Utils {
-    static async loadBooks () {
+    static async loadBooks() {
         await fetch('./user_library.json')
             .then((response) => response.json())
             .then((json) => [...json.books])
@@ -511,18 +578,38 @@ class Utils {
             }))
             .then(console.log('done'));
     }
+
+    static renderFilters() {
+        const ownedFilter = new Filter(1, 'Owned', owned);
+        const readFilter = new Filter(2, 'Read', read);
+        const categoryFilter = new Filter(3, 'Category', categories);
+        const authorFilter = new Filter(4, 'Author', authors);
+
+        Filter.renderAll(filter_container);
+
+        filter_headers = document.querySelectorAll('.filter_header');
+        filter_contents = document.querySelectorAll('.filter_content');
+        filter_contents_values = document.querySelectorAll('.filter_content_values');
+        filter_container = document.querySelector('.filters');
+        filters = document.querySelectorAll('.filter');
+        filter_dropdowns = document.querySelectorAll('.dropdown');
+        filter_dropdowns.forEach( 
+            filter_dropdown => filter_dropdown.addEventListener('click', handleDropdown) 
+        );
+    }
 }
 
-const filters = document.querySelectorAll('.filter');
+let filter_container = document.querySelector('.filters');
+let filters = document.querySelectorAll('.filter');
 const user_tag = document.querySelector('.user-tag');
 user_tag.addEventListener('click', handleUserDropdown);
-const filter_dropdowns = document.querySelectorAll('.dropdown');
+let filter_dropdowns = document.querySelectorAll('.dropdown');
 filter_dropdowns.forEach( 
     filter_dropdown => filter_dropdown.addEventListener('click', handleDropdown) 
 );
-const filter_headers = document.querySelectorAll('.filter_header');
-const filter_contents = document.querySelectorAll('.filter_content');
-const filter_contents_values = document.querySelectorAll('.filter_content_values');
+let filter_headers = document.querySelectorAll('.filter_header');
+let filter_contents = document.querySelectorAll('.filter_content');
+let filter_contents_values = document.querySelectorAll('.filter_content_values');
 const main = document.querySelector('main'); 
 const add_book_container = document.querySelector('.add_book_container');
 const add_book_form = document.querySelector('.add_book_form');
