@@ -1,20 +1,29 @@
 import "./style.css";
+import Header from "./header/header.js";
+import NavItem from "./header/navItem.js";
+import Main from "./main/main.js";
+import Footer from "./footer/footer.js"
 
 const root = document.querySelector('#root');
-const headerHTML = `
-    <div id='header' class='header'>
-        <h1> This is my header container </h1>
-    </div>
 
-    <div id='main' class='main'>
-        <div id='left-pane' class='left-pane'>To the Left</div>
-        <div id='right-pane' class='right-pane'>To the right</div>
-    </div>
+root.innerHTML += Header.headerHTML;
+root.innerHTML += Main.mainHTML(NavItem.switch);
+root.innerHTML += Footer.footerHTML;
 
-    <div id='footer' class='footer'>
-        <h1> This is my footer container </h1>
-    </div>
-    
-`;
+const header = document.querySelector('.header');
+const main = document.querySelector('.main');
+const footer = document.querySelector('.footer');
 
-root.innerHTML = headerHTML;
+function pageSwitch (e) {
+    const id = e.srcElement.id
+    const switchState = id.substring(3);
+    NavItem.switch = switchState;
+
+    if (document.getElementsByClassName('main').length > 0) {
+        main.innerHTML = Main.mainHTML(NavItem.switch);
+    }
+}
+
+const navItems = document.querySelectorAll(".header-nav-ul-li");
+
+navItems.forEach(item => item.addEventListener('click', pageSwitch));
