@@ -1,4 +1,5 @@
 import "./header.css";
+import NavItem from "./navItem.js";
 
 class Header {
     static HTML = `
@@ -6,9 +7,9 @@ class Header {
             <div class='logo'>Super-To-Do</div>
             <div class='nav'>
                 <ul>
-                    <li>Calendar</li>
-                    <li>Board</li>
-                    <li>Timeline</li>
+                    ${NavItem.HTML('Calendar')}
+                    ${NavItem.HTML('Board')}
+                    ${NavItem.HTML('Timeline')}
                 </ul>
             </div>
             <div class='settings'>
