@@ -1,49 +1,23 @@
 import "./main.css";
+import { eventBus } from "../events/eventBus.js";
+import { NAV_ITEM_CLICKED } from "../events/eventTypes.js";
 
 class Main {
-    static get mainObject() {
-        return document.querySelector('.main');
+
+    constructor () {
+        this.element = document.createElement('div');
+        this.element.classList.add('main');
+        this.element.textContent = 'Init Page';
+
+        eventBus.subscribe(NAV_ITEM_CLICKED, (label) => {
+          this.element.textContent = label;
+        });
     }
 
-    static HTML(state) {
-        let HTML = ''
-        switch(state){
-            case 'calendar':
-                 HTML = 
-                 `
-                    <div class='main'>
-                        Calendar
-                    </div>
-                 `;
-                 break;
-            case 'board':
-                 HTML = 
-                 `
-                    <div class='main'>
-                        Board
-                    </div>
-                 `;
-                 break;
-            case 'time-line':
-                 HTML = 
-                 `
-                    <div class='main'>
-                        TimeLine
-                    </div>
-                 `;
-                 break;
-            default:
-                 HTML = 
-                 `
-                    <div class='main'>
-                        InitPage
-                    </div>
-                 `;
-                 break;
-        }
-
-        return HTML;
+    render () {
+        return this.element;
     }
-};
+
+}
 
 export default Main;

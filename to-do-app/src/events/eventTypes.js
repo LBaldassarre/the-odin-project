@@ -1,0 +1,2 @@
+export const NAV_ITEM_CLICKED = "NAV_ITEM_CLICKED";
+export const ROUTE_CHANGED = "ROUTE_CHANGED";
