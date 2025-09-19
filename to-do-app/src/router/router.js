@@ -1,8 +1,8 @@
 import { eventBus } from "../events/eventBus.js";
 import { NAV_ITEM_CLICKED } from "../events/eventTypes.js";
-import Calendar from "../main/calendar.js";
-import Board from "../main/board.js";
-import Timeline from "../main/timeLine.js";
+import Calendar from "../main/calendar/calendar.js";
+import Board from "../main/board/board.js";
+import Timeline from "../main/timeLine/timeLine.js";
 
 class Router {
   constructor(mainElement) {

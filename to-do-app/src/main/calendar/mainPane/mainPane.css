@@ -1,0 +1,6 @@
+.main-pane-container{
+    border: 1px solid black;
+    text-align: center;
+    height: 100%;
+    flex-grow: 1;
+}
