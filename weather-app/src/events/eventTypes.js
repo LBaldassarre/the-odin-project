@@ -1,0 +1,1 @@
+export const SEARCH_BTN_CLICKED = "SEARCH_BTN_CLICKED";
