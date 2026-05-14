@@ -1,0 +1,12 @@
+.side-pane-container{
+    border: 1px solid black;
+    text-align: center;
+    height: 100%;
+    width: 50px;
+    transition: 0.5s;
+}
+
+.calendar-side-pane-active{
+    width: 25%;
+    transition: 0.5s;
+}

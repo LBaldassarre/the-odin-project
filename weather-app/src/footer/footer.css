@@ -1,0 +1,20 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    text-align: center;
+    color: rgb(155, 155, 155);
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    border-image-source: linear-gradient(
+            90deg, 
+            white 0%, 
+            #cbced8 5%, 
+            #cbced8 95%, 
+            white 100%);
+}
