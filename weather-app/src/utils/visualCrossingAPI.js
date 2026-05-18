@@ -6,18 +6,16 @@ class VisualCrossing {
         this.API_KEY = API_KEY;
     }
 
-    async dayWeather(country, state, date=new Date()) {
-
+    async dayWeather(country, state, date = new Date()) {
         const dateAPI = date.toISOString().split('T')[0];
 
-        fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${state},${country}/${dateAPI}?key=${this.API_KEY}&include=days,hours&unitGroup=metric`)
-            .then((response) => {
-                return response.json();
-                })
-            .then((response) => {
-                console.log(response);
-            });
+        const response = await fetch(
+            `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${state},${country}/${dateAPI}?key=${this.API_KEY}&include=days,hours&unitGroup=metric`
+        );
 
+        const data = await response.json();
+
+        return data;
     }
 
     async weekWeather(country, state, startDate=new Date()) {

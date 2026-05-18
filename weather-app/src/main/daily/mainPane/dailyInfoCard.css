@@ -1,0 +1,31 @@
+.daily-info-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "h h h"
+        "d d i"
+        "d d i";
+    min-width: 150px;
+    height: 100%;
+}
+
+.daily-info-card-header {
+    grid-area: h;
+    justify-self: center;
+    align-self: center;
+    width: 100%;
+}
+
+.daily-info-card-data {
+    grid-area: d;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+}
+
+.daily-info-card-icon {
+    grid-area: i;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+}
